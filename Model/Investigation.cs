@@ -17,7 +17,10 @@ namespace ProjetDotNet.Model
         [Key] 
         public string InvestigationNumber { get; set; }
 
-        public Investigator? Investigator { get; set; }
+        public Investigator? MainInvestigator { get; set; }
+
+
+        public Investigator? SecondaryInvestigator { get; set; }
 
         [Required]
         public Suspect Suspect { get; set; }

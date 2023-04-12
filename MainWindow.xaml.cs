@@ -58,9 +58,11 @@ namespace ProjetDotNet
 
             Console.WriteLine(DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() + "1");
 
+            int numInvestigation = 1;
+
             Investigation investigation = new Investigation
             {
-                InvestigationNumber = (DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() + "1"),
+                InvestigationNumber = DateTime.Today.Year.ToString() + " " + DateTime.Today.Month.ToString() + " " + numInvestigation.ToString(),
                 Suspect = suspect,
                 Complainant = complainant,
                 Reason = "Battue",
