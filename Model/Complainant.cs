@@ -10,7 +10,6 @@ namespace ProjetDotNet.Model
 {
     public class Complainant
     {
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ComplainantId { get; set; }
 
@@ -40,5 +39,11 @@ namespace ProjetDotNet.Model
 
         [Required]
         public string Street { get; set; }
+
+
+        //One to One relationships
+        public string InvestigationId { get; set; }
+
+        public Investigation Investigation { get; set; }
     }
 }

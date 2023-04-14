@@ -1,20 +1,9 @@
-﻿using ProjetDotNet.Configuration;
+﻿using CefSharp.Wpf;
 using ProjetDotNet.Database;
 using ProjetDotNet.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ProjetDotNet
 {
@@ -23,8 +12,10 @@ namespace ProjetDotNet
     /// </summary>
     public partial class MainWindow : Window
     {
-       
-       private readonly ApplicationContext _context = new ApplicationContext(Configuration.Configuration.connectionString);
+
+        private WebBrowser _myWebBrowser;
+
+        private readonly ApplicationContext _context = new ApplicationContext(Configuration.Configuration.connectionString);
 
         public MainWindow()
         {
@@ -85,13 +76,31 @@ namespace ProjetDotNet
             };
 
 
-
+            /*
             _context.Add(complainant);
             _context.Add(investigator);
             _context.Add(suspect);
             _context.Add(investigation);
             _context.SaveChanges();
             _context.Dispose();
+            */
+
+
+
+            var settings = new CefSettings();
+            settings.CefCommandLineArgs.Add("disable-web-security", "1");
+
+            MyWebView.FrameLoadEnd += MyWebView_FrameLoadEnd;
+            MyWebView.LoadHtml("<html><body><iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Paris&destination=Marseille&avoid=tolls/" width="800" height="450" frameborder="0" style="border:0"></iframe></body></html>");
+        }
+
+        private void MyWebView_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
+        {
+            if (e.Frame.IsMain)
+            {
+                MyWebView.ExecuteScriptAsync("alert('Map loaded successfully');");
+            }
+
         }
     }
 }

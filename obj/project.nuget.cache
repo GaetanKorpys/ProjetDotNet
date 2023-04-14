@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "2ePSgaBXF8puz7hqfUEgEx8dRgZT8itnYazFHA+CqTWv08Pa0gri5SfPQvNlaUbBusHih7Kjk5RmB4yD16XNrA==",
+  "dgSpecHash": "2xgub8sAkmxZWKl2BAxyl98D2CN4JWLK4Z2E9ZGBo509NCr0jtjuUglDeTjQw3bhEI1OAnCL/MFK01zLMrjiUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gaetan\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\cef.redist.x64\\112.2.7\\cef.redist.x64.112.2.7.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\cef.redist.x86\\112.2.7\\cef.redist.x86.112.2.7.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.common\\112.2.70\\cefsharp.common.112.2.70.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.winforms\\112.2.70\\cefsharp.winforms.112.2.70.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.wpf\\112.2.70\\cefsharp.wpf.112.2.70.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",
@@ -67,5 +72,26 @@
     "C:\\Users\\Gaetan\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Le package 'CefSharp.WinForms 112.2.70' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net6.0-windows7.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
+      "libraryId": "CefSharp.WinForms",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Le package 'CefSharp.Wpf 112.2.70' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net6.0-windows7.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
+      "libraryId": "CefSharp.Wpf",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
 }

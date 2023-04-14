@@ -17,10 +17,7 @@ namespace ProjetDotNet.Model
         [Key] 
         public string InvestigationNumber { get; set; }
 
-        public Investigator? MainInvestigator { get; set; }
-
-
-        public Investigator? SecondaryInvestigator { get; set; }
+        public Investigator? Investigator { get; set; }
 
         [Required]
         public Suspect Suspect { get; set; }
@@ -48,5 +45,7 @@ namespace ProjetDotNet.Model
 
         [Required]
         public Status Status { get; set; } = Status.Pending;
+
+        public List<Visit> Visits { get; set; }
     }
 }
