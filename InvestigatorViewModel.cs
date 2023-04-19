@@ -237,8 +237,12 @@ namespace ProjetDotNet
 
                     db.SaveChanges();
                 }
-
                 ClearInvestigatorFields();
+                using (var context = new ApplicationContext())
+                {
+                    var investigators = context.Investigators.ToList();
+                    Investigators = new ObservableCollection<Investigator>(investigators);
+                }
             }
         }
 
@@ -262,7 +266,6 @@ namespace ProjetDotNet
                 }
             }
         }
-
 
         private bool CanAddInvestigator()
         {

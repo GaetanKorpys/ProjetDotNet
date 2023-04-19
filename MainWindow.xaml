@@ -16,12 +16,25 @@
                         <!-- Liste déroulante pour sélectionner un inspecteur -->
                         <TextBlock Text="Sélectionnez un inspecteur :" />
                         <ComboBox x:Name="cmbInvestigators" 
-                          DisplayMemberPath="Name"
+                          
                           SelectedValuePath="InvestigatorId"
                           SelectedValue="{Binding SelectedInvestigatorId}"
                           ItemsSource="{Binding Investigators}" 
                           SelectionChanged="cmbInvestigators_SelectionChanged" 
-                          DropDownOpened="cmbInvestigators_DropDownOpened" />
+                          DropDownOpened="cmbInvestigators_DropDownOpened" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                <Binding Path="LastName"/>
+                                                <Binding Path="Name"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox> 
 
                         <!-- Zone de création d'un nouvel inspecteur -->
                         <Grid>
@@ -45,11 +58,11 @@
 
                             <!-- Champs pour le nom -->
                             <TextBlock Text="Nom : " Grid.Row="0" Grid.Column="0" />
-                            <TextBox Text="{Binding Name, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" />
+                            <TextBox Text="{Binding LastName}" Grid.Row="0" Grid.Column="1" />
 
                             <!-- Champs pour le prénom -->
                             <TextBlock Text="Prénom : " Grid.Row="1" Grid.Column="0" />
-                            <TextBox Text="{Binding LastName}" Grid.Row="1" Grid.Column="1" />
+                            <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
 
                             <!-- Champs pour l'adresse e-mail -->
                             <TextBlock Text="Adresse e-mail : " Grid.Row="2" Grid.Column="0" />

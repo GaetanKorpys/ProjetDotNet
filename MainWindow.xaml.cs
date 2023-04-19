@@ -120,9 +120,9 @@ namespace ProjetDotNet
         {
             ComboBox combobox = (sender as ComboBox);
 
-            combobox.SelectedIndex = 0;
-            combobox.SelectedValue = null;
-            combobox.SelectedItem = null;
+              combobox.SelectedIndex = 0;
+              combobox.SelectedValue = null;
+              combobox.SelectedItem = null;
         }
 
 
