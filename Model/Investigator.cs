@@ -14,7 +14,7 @@ namespace ProjetDotNet.Model
         public int InvestigatorId { get; set; }
 
         [Required]
-        public bool isMain { get; set; }
+        public bool IsMain { get; set; }
 
         [Required]
         public string Name { get; set; }

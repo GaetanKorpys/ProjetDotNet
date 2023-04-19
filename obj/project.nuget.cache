@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2xgub8sAkmxZWKl2BAxyl98D2CN4JWLK4Z2E9ZGBo509NCr0jtjuUglDeTjQw3bhEI1OAnCL/MFK01zLMrjiUQ==",
+  "dgSpecHash": "lBXj++NU4YIljxZoNZdM5eXWLl1cZlFxNxmBhcKelYje/edSRoWrSZ1gVb46GTqYHfq/1mEjfV48u8I402gTPQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.common\\112.2.70\\cefsharp.common.112.2.70.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.winforms\\112.2.70\\cefsharp.winforms.112.2.70.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.wpf\\112.2.70\\cefsharp.wpf.112.2.70.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\communitytoolkit.mvvm\\8.1.0\\communitytoolkit.mvvm.8.1.0.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",

@@ -3,6 +3,105 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         Title="PoleInvestigation" Height="450" Width="800">
     <Grid>
-        <cefSharp:ChromiumWebBrowser x:Name="MyWebView"/>
+        <TabControl>
+            <TabItem Header="Inspecteur">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="350" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Partie gauche -->
+                    <StackPanel Grid.Column="0" Margin="10,10,10,10">
+                        <!-- Liste déroulante pour sélectionner un inspecteur -->
+                        <TextBlock Text="Sélectionnez un inspecteur :" />
+                        <ComboBox x:Name="cmbInvestigators" 
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="InvestigatorId"
+                          SelectedValue="{Binding SelectedInvestigatorId}"
+                          ItemsSource="{Binding Investigators}" 
+                          SelectionChanged="cmbInvestigators_SelectionChanged" 
+                          DropDownOpened="cmbInvestigators_DropDownOpened" />
+
+                        <!-- Zone de création d'un nouvel inspecteur -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!-- Champs pour le nom -->
+                            <TextBlock Text="Nom : " Grid.Row="0" Grid.Column="0" />
+                            <TextBox Text="{Binding Name, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" />
+
+                            <!-- Champs pour le prénom -->
+                            <TextBlock Text="Prénom : " Grid.Row="1" Grid.Column="0" />
+                            <TextBox Text="{Binding LastName}" Grid.Row="1" Grid.Column="1" />
+
+                            <!-- Champs pour l'adresse e-mail -->
+                            <TextBlock Text="Adresse e-mail : " Grid.Row="2" Grid.Column="0" />
+                            <TextBox Text="{Binding Email}" Grid.Row="2" Grid.Column="1" />
+
+                            <!-- Champs pour le numéro de téléphone -->
+                            <TextBlock Text="Numéro de téléphone : " Grid.Row="3" Grid.Column="0" />
+                            <TextBox Text="{Binding PhoneNumber}" Grid.Row="3" Grid.Column="1" />
+
+                            <!-- Champs pour la ville -->
+                            <TextBlock Text="Ville : " Grid.Row="4" Grid.Column="0" />
+                            <TextBox Text="{Binding City}" Grid.Row="4" Grid.Column="1" />
+
+                            <!-- Champs pour le pays -->
+                            <TextBlock Text="Pays : " Grid.Row="5" Grid.Column="0" />
+                            <TextBox Text="{Binding Country}" Grid.Row="5" Grid.Column="1" />
+
+                            <!-- Champs pour le code postal -->
+                            <TextBlock Text="Code postal : " Grid.Row="6" Grid.Column="0" />
+                            <TextBox Text="{Binding PostalCode}" Grid.Row="6" Grid.Column="1" />
+
+                            <!-- Champs pour le numéro de rue -->
+                            <TextBlock Text="Numéro de rue : " Grid.Row="7" Grid.Column="0" />
+                            <TextBox Text="{Binding NumberAdress}" Grid.Row="7" Grid.Column="1" />
+
+                            <!-- Champs pour le nom de rue -->
+                            <TextBlock Text="Nom de rue : " Grid.Row="8" Grid.Column="0" />
+                            <TextBox Text="{Binding Street}" Grid.Row="8" Grid.Column="1" />
+
+                            <!-- Champs pour le booléen "isMain" -->
+                            <TextBlock Text="Est-ce l'inspecteur principal ?" Grid.Row="9" Grid.Column="0" />
+                            <CheckBox IsChecked="{Binding IsMain}" Grid.Row="9" Grid.Column="1" />
+                        </Grid>
+                        <!-- Ajoutez les autres champs ici selon le modèle -->
+                        <Button Content="Ajouter" Margin="0,10,0,0" Command="{Binding AddInvestigatorCommand}" />
+                        <Button Content="Mettre à jour" Margin="0,10,0,0" Command="{Binding UpdateInvestigatorCommand}" />
+                        <Button Content="Supprimer" Margin="0,10,0,0" Command="{Binding DeleteInvestigatorCommand}" />
+                    </StackPanel>
+
+                    <!-- Partie droite -->
+                    <StackPanel Grid.Column="1" Margin="10,10,10,10">
+                        <!-- Informations sur l'inspecteur sélectionné -->
+                        <TextBlock Text="{Binding SelectedInvestigatorName}" 
+                           FontWeight="Bold" 
+                           FontSize="16" 
+                           Margin="0,0,0,10" />
+                        <TextBlock Text="{Binding SelectedInvestigatorLastName}" />
+                        <!-- Ajoutez les autres champs ici selon le modèle -->
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

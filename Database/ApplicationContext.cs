@@ -14,14 +14,14 @@ namespace ProjetDotNet.Database
     {
         private readonly string _connectionString;
 
-        public DbSet<Investigation> Enquetes { get; set; }
-        public DbSet<Investigator> Enqueteurs { get; set; }
+        public DbSet<Investigation> Investigations { get; set; }
+        public DbSet<Investigator> Investigators { get; set; }
         public DbSet<Complainant> Complainants { get; set; }
         public DbSet<Suspect> Suspects { get; set; }
 
-        public ApplicationContext(string connectionString)
+        public ApplicationContext()
         {
-            _connectionString = connectionString;
+            _connectionString = Configuration.Configuration.connectionString;
             Database.EnsureCreated();
             //Database.EnsureDeleted();
         }

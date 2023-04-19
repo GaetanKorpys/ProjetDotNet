@@ -13,13 +13,18 @@ namespace ProjetDotNet
     public partial class MainWindow : Window
     {
 
+        public InvestigatorViewModel InvestigatorVM { get; set; }
+
+
         private WebBrowser _myWebBrowser;
 
-        private readonly ApplicationContext _context = new ApplicationContext(Configuration.Configuration.connectionString);
+        //private readonly ApplicationContext _context = new ApplicationContext(Configuration.Configuration.connectionString);
 
         public MainWindow()
         {
             InitializeComponent();
+            InvestigatorVM = new InvestigatorViewModel();
+            DataContext = InvestigatorVM;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -86,14 +91,43 @@ namespace ProjetDotNet
             */
 
 
-
+            /*
             var settings = new CefSettings();
             settings.CefCommandLineArgs.Add("disable-web-security", "1");
 
             MyWebView.FrameLoadEnd += MyWebView_FrameLoadEnd;
             MyWebView.LoadHtml("<html><body><iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Paris&destination=Marseille&avoid=tolls/" width="800" height="450" frameborder="0" style="border:0"></iframe></body></html>");
+            */
         }
 
+        private void cmbInvestigators_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Récupération de l'investigateur sélectionné dans la vue
+            var selectedInvestigator = cmbInvestigators.SelectedItem as Investigator;
+
+            if (selectedInvestigator == null)
+            {
+                InvestigatorVM.ClearInvestigatorFields();
+                return;
+            }
+
+            // Mise à jour de la propriété SelectedInvestigator de votre ViewModel
+            InvestigatorVM.SelectedInvestigator = selectedInvestigator;
+            InvestigatorVM.FillTextBox();
+        }
+
+        private void cmbInvestigators_DropDownOpened(object sender, EventArgs e)
+        {
+            ComboBox combobox = (sender as ComboBox);
+
+            combobox.SelectedIndex = 0;
+            combobox.SelectedValue = null;
+            combobox.SelectedItem = null;
+        }
+
+
+
+        /*
         private void MyWebView_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
         {
             if (e.Frame.IsMain)
@@ -102,5 +136,6 @@ namespace ProjetDotNet
             }
 
         }
+        */
     }
 }
