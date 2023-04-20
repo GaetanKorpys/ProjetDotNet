@@ -7,7 +7,33 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\ComplainantView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\InvestigationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\InvestigatorView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SuspectView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ComplainantView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\InvestigationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\InvestigatorView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SuspectView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

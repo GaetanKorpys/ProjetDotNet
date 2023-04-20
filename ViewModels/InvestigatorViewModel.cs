@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using ProjetDotNet.Database;
-using ProjetDotNet.Model;
+using ProjetDotNet.Models;
+using ProjetDotNet.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace ProjetDotNet
+namespace ProjetDotNet.ViewModels
 {
     public class InvestigatorViewModel : INotifyPropertyChanged
     {
@@ -153,6 +154,8 @@ namespace ProjetDotNet
         public ICommand UpdateInvestigatorCommand { get; set; }
         public ICommand DeleteInvestigatorCommand { get; set; }
 
+
+
         // Implémentation de INotifyPropertyChanged pour la liaison de données
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
@@ -167,6 +170,7 @@ namespace ProjetDotNet
             UpdateInvestigatorCommand = new RelayCommand(UpdateInvestigator);
             DeleteInvestigatorCommand = new RelayCommand(DeleteInvestigator);
 
+
             using (var context = new ApplicationContext())
             {
                 var investigators = context.Investigators.ToList();
@@ -174,11 +178,11 @@ namespace ProjetDotNet
             }
         }
 
-        
-        //CRUD
+
+    
         private void AddInvestigator()
         {
-            if(!CanAddInvestigator())
+            if (!CanAddInvestigator())
             {
                 MessageBox.Show("Veuillez remplir tous les champs.", "Erreur");
                 return;
@@ -188,23 +192,23 @@ namespace ProjetDotNet
             {
                 var investigator = new Investigator()
                 {
-                    IsMain = this.IsMain,
-                    Name = this.Name,
-                    LastName = this.LastName,
-                    Email = this.Email,
-                    PhoneNumber = this.PhoneNumber,
-                    City = this.City,
-                    Country = this.Country,
-                    PostalCode = this.PostalCode,
-                    NumberAdress = this.NumberAdress,
-                    Street = this.Street
+                    IsMain = IsMain,
+                    Name = Name,
+                    LastName = LastName,
+                    Email = Email,
+                    PhoneNumber = PhoneNumber,
+                    City = City,
+                    Country = Country,
+                    PostalCode = PostalCode,
+                    NumberAdress = NumberAdress,
+                    Street = Street
                 };
 
                 db.Investigators.Add(investigator);
                 db.SaveChanges();
 
                 // Add the new investigator to the list of investigators
-                this.Investigators.Add(investigator);
+                Investigators.Add(investigator);
 
                 ClearInvestigatorFields();
             }
@@ -270,15 +274,15 @@ namespace ProjetDotNet
         private bool CanAddInvestigator()
         {
             // Check if all required fields have been filled
-            return !string.IsNullOrEmpty(this.Name) &&
-                   !string.IsNullOrEmpty(this.LastName) &&
-                   !string.IsNullOrEmpty(this.Email) &&
-                   !string.IsNullOrEmpty(this.PhoneNumber) &&
-                   !string.IsNullOrEmpty(this.City) &&
-                   !string.IsNullOrEmpty(this.Country) &&
-                   this.PostalCode != 0 &&
-                   this.NumberAdress != 0 &&
-                   !string.IsNullOrEmpty(this.Street);
+            return !string.IsNullOrEmpty(Name) &&
+                   !string.IsNullOrEmpty(LastName) &&
+                   !string.IsNullOrEmpty(Email) &&
+                   !string.IsNullOrEmpty(PhoneNumber) &&
+                   !string.IsNullOrEmpty(City) &&
+                   !string.IsNullOrEmpty(Country) &&
+                   PostalCode != 0 &&
+                   NumberAdress != 0 &&
+                   !string.IsNullOrEmpty(Street);
         }
 
         public void ClearInvestigatorFields()
@@ -298,7 +302,7 @@ namespace ProjetDotNet
 
         public void FillTextBox()
         {
-            if(SelectedInvestigator != null) 
+            if (SelectedInvestigator != null)
             {
                 IsMain = SelectedInvestigator.IsMain;
                 Name = SelectedInvestigator.Name;
@@ -310,7 +314,7 @@ namespace ProjetDotNet
                 NumberAdress = SelectedInvestigator.NumberAdress;
                 Street = SelectedInvestigator.Street;
                 PhoneNumber = SelectedInvestigator.PhoneNumber;
-            }    
+            }
         }
     }
 

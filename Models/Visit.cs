@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Permissions;
 
-namespace ProjetDotNet.Model
+namespace ProjetDotNet.Models
 {
     public class Visit
     {

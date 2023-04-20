@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetDotNet.Model
+namespace ProjetDotNet.Models
 {
     public class Investigator
     {

@@ -1,6 +1,9 @@
 ﻿using CefSharp.Wpf;
+using CommunityToolkit.Mvvm.Input;
 using ProjetDotNet.Database;
-using ProjetDotNet.Model;
+using ProjetDotNet.Models;
+using ProjetDotNet.Views;
+using ProjetDotNet.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,129 +15,132 @@ namespace ProjetDotNet
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public InvestigatorViewModel InvestigatorVM { get; set; }
-
-
-        private WebBrowser _myWebBrowser;
-
-        //private readonly ApplicationContext _context = new ApplicationContext(Configuration.Configuration.connectionString);
-
+        /*
+        private readonly InvestigationViewModel _investigationViewModel;
+        private readonly InvestigatorViewModel _investigatorViewModel;
+        private readonly SuspectViewModel _suspectViewModel;
+        private readonly ComplainantViewModel _complainantViewModel;
+        
         public MainWindow()
         {
             InitializeComponent();
-            InvestigatorVM = new InvestigatorViewModel();
-            DataContext = InvestigatorVM;
+            _investigationViewModel = new InvestigationViewModel();
+            _investigatorViewModel = new InvestigatorViewModel();
+            _suspectViewModel = new SuspectViewModel();
+            _complainantViewModel = new ComplainantViewModel();
+            DataContext = this;
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        */
+        public MainWindow()
         {
-
-            Complainant complainant = new Complainant
-            {
-                Name = "Joe",
-                LastName = "Mert",
-                Email = "test@email.com",
-                PhoneNumber = "0600000000",
-                City = "Metz",
-                Country = "France",
-                PostalCode = 57000,
-                NumberAdress = 45,
-                Street = "Rue Capucin"
-            };
-
-            Suspect suspect = new Suspect
-            {
-                City = "Metz",
-                Country = "France",
-                PostalCode = 57000,
-                Street = "Rue Capucin"
-            };
-
-
-            Console.WriteLine(DateTime.Today.Year.ToString() + DateTime.Today.Month.ToString() + "1");
-
-            int numInvestigation = 1;
-
-            Investigation investigation = new Investigation
-            {
-                InvestigationNumber = DateTime.Today.Year.ToString() + " " + DateTime.Today.Month.ToString() + " " + numInvestigation.ToString(),
-                Suspect = suspect,
-                Complainant = complainant,
-                Reason = "Battue",
-                NumberOfAnimals = 1,
-                AnimalBreed = "Chien",
-                InvestigationStartDate = DateTime.Today,
-            };
-
-            Investigator investigator = new Investigator
-            {
-                Name = "Paul",
-                LastName = "Pol",
-                Email = "test@email.com",
-                PhoneNumber = "0600000088",
-                City = "Metz",
-                Country = "France",
-                PostalCode = 57000,
-                NumberAdress = 61,
-                Street = "Rue Florent",
-            };
-
-
-            /*
-            _context.Add(complainant);
-            _context.Add(investigator);
-            _context.Add(suspect);
-            _context.Add(investigation);
-            _context.SaveChanges();
-            _context.Dispose();
-            */
-
-
-            /*
-            var settings = new CefSettings();
-            settings.CefCommandLineArgs.Add("disable-web-security", "1");
-
-            MyWebView.FrameLoadEnd += MyWebView_FrameLoadEnd;
-            MyWebView.LoadHtml("<html><body><iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Paris&destination=Marseille&avoid=tolls/" width="800" height="450" frameborder="0" style="border:0"></iframe></body></html>");
-            */
+            InitializeComponent();
         }
 
-        private void cmbInvestigators_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void InvestigationView_Clicked(object sender, RoutedEventArgs e)
         {
-            // Récupération de l'investigateur sélectionné dans la vue
-            var selectedInvestigator = cmbInvestigators.SelectedItem as Investigator;
-
-            if (selectedInvestigator == null)
-            {
-                InvestigatorVM.ClearInvestigatorFields();
-                return;
-            }
-
-            // Mise à jour de la propriété SelectedInvestigator de votre ViewModel
-            InvestigatorVM.SelectedInvestigator = selectedInvestigator;
-            InvestigatorVM.FillTextBox();
+            DataContext = new InvestigationViewModel();
         }
 
-        private void cmbInvestigators_DropDownOpened(object sender, EventArgs e)
+        private void InvestigatorView_Clicked(object sender, RoutedEventArgs e)
         {
-            ComboBox combobox = (sender as ComboBox);
-
-              combobox.SelectedIndex = 0;
-              combobox.SelectedValue = null;
-              combobox.SelectedItem = null;
+            DataContext = new InvestigatorViewModel();
         }
 
+        private void SuspectView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new SuspectViewModel();
+        }
+
+        private void ComplainantView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ComplainantViewModel();
+        }
 
 
         /*
-        private void MyWebView_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
-        {
-            if (e.Frame.IsMain)
-            {
-                MyWebView.ExecuteScriptAsync("alert('Map loaded successfully');");
-            }
+        public RelayCommand OpenInvestigationCommand => new RelayCommand(OpenInvestigation);
+        public RelayCommand OpenInvestigatorCommand => new RelayCommand(OpenInvestigator);
+        public RelayCommand OpenSuspectCommand => new RelayCommand(OpenSuspect);
+        public RelayCommand OpenComplainantCommand => new RelayCommand(OpenComplainant);
 
+        private void OpenInvestigation()
+        {
+            // Créer une instance de la vue d'Investigation
+            var investigationView = new InvestigationView();
+
+            // Assigner le ViewModel à la vue
+            investigationView.DataContext = _investigationViewModel;
+
+            // Ajouter la vue en tant que nouveau TabItem dans le TabControl de MainWindow
+            var newTabItem = new TabItem()
+            {
+                Header = "Investigation",
+                Content = investigationView
+            };
+            tabControl.Items.Add(newTabItem);
+
+            // Sélectionner le nouveau TabItem
+            tabControl.SelectedItem = newTabItem;
+        }
+
+        private void OpenInvestigator()
+        {
+            // Créer une instance de la vue d'Investigator
+            var investigatorView = new InvestigatorView();
+
+            // Assigner le ViewModel à la vue
+            investigatorView.DataContext = _investigatorViewModel;
+
+            // Ajouter la vue en tant que nouveau TabItem dans le TabControl de MainWindow
+            var newTabItem = new TabItem()
+            {
+                Header = "Investigator",
+                Content = investigatorView
+            };
+            tabControl.Items.Add(newTabItem);
+
+            // Sélectionner le nouveau TabItem
+            tabControl.SelectedItem = newTabItem;
+        }
+
+        private void OpenSuspect()
+        {
+            // Créer une instance de la vue de Suspect
+            var suspectView = new SuspectView();
+
+            // Assigner le ViewModel à la vue
+            suspectView.DataContext = _suspectViewModel;
+
+            // Ajouter la vue en tant que nouveau TabItem dans le TabControl de MainWindow
+            var newTabItem = new TabItem()
+            {
+                Header = "Suspect",
+                Content = suspectView
+            };
+            tabControl.Items.Add(newTabItem);
+
+            // Sélectionner le nouveau TabItem
+            tabControl.SelectedItem = newTabItem;
+        }
+
+        private void OpenComplainant()
+        {
+            // Créer une instance de la vue de Complainant
+            var complainantView = new ComplainantView();
+
+            // Assigner le ViewModel à la vue
+            complainantView.DataContext = _complainantViewModel;
+
+            // Ajouter la vue en tant que nouveau TabItem dans le TabControl de MainWindow
+            var newTabItem = new TabItem()
+            {
+                Header = "Complainant",
+                Content = complainantView
+            };
+            tabControl.Items.Add(newTabItem);
+
+            // Sélectionner le nouveau TabItem
+            tabControl.SelectedItem = newTabItem;
         }
         */
     }
