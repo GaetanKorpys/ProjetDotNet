@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetDotNet.ViewModels
 {
-    public class ComplainantViewModel
+    public class ComplainantViewModel : BaseViewModel
     {
     }
 }

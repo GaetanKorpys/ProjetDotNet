@@ -34,6 +34,7 @@ namespace ProjetDotNet
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
 
         private void InvestigationView_Clicked(object sender, RoutedEventArgs e)

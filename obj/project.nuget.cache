@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lBXj++NU4YIljxZoNZdM5eXWLl1cZlFxNxmBhcKelYje/edSRoWrSZ1gVb46GTqYHfq/1mEjfV48u8I402gTPQ==",
+  "dgSpecHash": "WdDC1pUvW6vU/q7YULmdRgZxWjaVE8eqjuCb3OE/0lIseJdhjjDm/94YYzWIabeuSYuUkuyVRDzfxWtmcWFNnw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
   "expectedPackageFiles": [
@@ -9,8 +9,13 @@
     "C:\\Users\\Gaetan\\.nuget\\packages\\cef.redist.x64\\112.2.7\\cef.redist.x64.112.2.7.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\cef.redist.x86\\112.2.7\\cef.redist.x86.112.2.7.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.common\\112.2.70\\cefsharp.common.112.2.70.nupkg.sha512",
-    "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.winforms\\112.2.70\\cefsharp.winforms.112.2.70.nupkg.sha512",
-    "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.wpf\\112.2.70\\cefsharp.wpf.112.2.70.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.common.netcore\\112.2.70\\cefsharp.common.netcore.112.2.70.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.winforms.netcore\\112.2.70\\cefsharp.winforms.netcore.112.2.70.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\cefsharp.wpf.netcore\\112.2.70\\cefsharp.wpf.netcore.112.2.70.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\chromiumembeddedframework.runtime\\112.2.7\\chromiumembeddedframework.runtime.112.2.7.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\chromiumembeddedframework.runtime.win-arm64\\112.2.7\\chromiumembeddedframework.runtime.win-arm64.112.2.7.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x64\\112.2.7\\chromiumembeddedframework.runtime.win-x64.112.2.7.nupkg.sha512",
+    "C:\\Users\\Gaetan\\.nuget\\packages\\chromiumembeddedframework.runtime.win-x86\\112.2.7\\chromiumembeddedframework.runtime.win-x86.112.2.7.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\communitytoolkit.mvvm\\8.1.0\\communitytoolkit.mvvm.8.1.0.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -73,26 +78,5 @@
     "C:\\Users\\Gaetan\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Gaetan\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Le package 'CefSharp.WinForms 112.2.70' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net6.0-windows7.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
-      "libraryId": "CefSharp.WinForms",
-      "targetGraphs": [
-        "net6.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Le package 'CefSharp.Wpf 112.2.70' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net6.0-windows7.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
-      "libraryId": "CefSharp.Wpf",
-      "targetGraphs": [
-        "net6.0-windows7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

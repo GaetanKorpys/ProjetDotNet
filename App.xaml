@@ -2,8 +2,22 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProjetDotNet"
+             xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+             xmlns:views="clr-namespace:ProjetDotNet.Views"
+             xmlns:viewmodels="clr-namespace:ProjetDotNet.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type viewmodels:ComplainantViewModel}">
+            <views:ComplainantView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:InvestigatorViewModel}">
+            <views:InvestigatorView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:InvestigationViewModel}">
+            <views:InvestigationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:SuspectViewModel}">
+            <views:SuspectView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -3,23 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         xmlns:local="clr-namespace:ProjetDotNet"
-        xmlns:ViewModels="clr-namespace:ProjetDotNet.ViewModels" 
-        xmlns:Views="clr-namespace:ProjetDotNet.Views"
+       
         Title="PoleInvestigation" Height="450" Width="800">
-    <Window.Resources>
-        <DataTemplate x:Name="complainantViewTemplate" DataType="{x:Type ViewModels:ComplainantViewModel}">
-            <Views:ComplainantView DataContext="{Binding}"/>
-        </DataTemplate>
-        <DataTemplate x:Name="investigatorViewTemplate" DataType="{x:Type ViewModels:InvestigatorViewModel}">
-            <Views:InvestigatorView DataContext="{Binding}"/>
-        </DataTemplate>
-        <DataTemplate x:Name="investigationViewTemplate" DataType="{x:Type ViewModels:InvestigationViewModel}">
-            <Views:InvestigationView DataContext="{Binding}"/>
-        </DataTemplate>
-        <DataTemplate x:Name="suspectViewTemplate" DataType="{x:Type ViewModels:SuspectViewModel}">
-            <Views:SuspectView DataContext="{Binding}"/>
-        </DataTemplate>
-    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -38,14 +23,14 @@
 
         <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
             <StackPanel>
-                <Button Content="Enquete" Click="InvestigationView_Clicked"/>
-                <Button Content="Enqueteur" Click="InvestigatorView_Clicked"/>
-                <Button Content="Suspect" Click="SuspectView_Clicked"/>
-                <Button Content="Plaignant" Click="ComplainantView_Clicked"/>
+                <Button Content="Enquete" Command="{Binding UpdateViewCommand}" CommandParameter="Investigation"/>
+                <Button Content="Enqueteur" Command="{Binding UpdateViewCommand}" CommandParameter="Investigator"/>
+                <Button Content="Suspect" Command="{Binding UpdateViewCommand}" CommandParameter="Suspect"/>
+                <Button Content="Plaignant" Command="{Binding UpdateViewCommand}" CommandParameter="Complainant"/>
             </StackPanel>
         </DockPanel>
 
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"/>
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>

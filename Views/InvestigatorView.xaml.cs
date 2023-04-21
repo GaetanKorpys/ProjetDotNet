@@ -19,9 +19,11 @@ namespace ProjetDotNet.Views
   
     public partial class InvestigatorView : UserControl
     {
+
         public InvestigatorView()
         {
             InitializeComponent();
+            
         }
     }
 }

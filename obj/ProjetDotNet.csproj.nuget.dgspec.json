@@ -44,11 +44,11 @@
               "target": "Package",
               "version": "[112.2.70, )"
             },
-            "CefSharp.WinForms": {
+            "CefSharp.WinForms.NETCore": {
               "target": "Package",
               "version": "[112.2.70, )"
             },
-            "CefSharp.Wpf": {
+            "CefSharp.Wpf.NETCore": {
               "target": "Package",
               "version": "[112.2.70, )"
             },
@@ -63,6 +63,18 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "chromiumembeddedframework.runtime.win-arm64": {
+              "target": "Package",
+              "version": "[112.2.7, )"
+            },
+            "chromiumembeddedframework.runtime.win-x64": {
+              "target": "Package",
+              "version": "[112.2.7, )"
+            },
+            "chromiumembeddedframework.runtime.win-x86": {
+              "target": "Package",
+              "version": "[112.2.7, )"
             }
           },
           "imports": [

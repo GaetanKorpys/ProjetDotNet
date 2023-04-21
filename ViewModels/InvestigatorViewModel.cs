@@ -16,11 +16,10 @@ using System.Windows.Input;
 
 namespace ProjetDotNet.ViewModels
 {
-    public class InvestigatorViewModel : INotifyPropertyChanged
+    public class InvestigatorViewModel : BaseViewModel
     {
 
         private Investigator _selectedInvestigator;
-        private bool _isMain;
         private string _name;
         private string _lastName;
         private string _email;
@@ -31,15 +30,6 @@ namespace ProjetDotNet.ViewModels
         private int _numberAdress;
         private string _street;
 
-        public bool IsMain
-        {
-            get { return _isMain; }
-            set
-            {
-                _isMain = value;
-                OnPropertyChanged(nameof(IsMain));
-            }
-        }
 
         public string Name
         {
@@ -48,7 +38,6 @@ namespace ProjetDotNet.ViewModels
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
-                OnPropertyChanged(nameof(FullName));
             }
         }
 
@@ -59,7 +48,6 @@ namespace ProjetDotNet.ViewModels
             {
                 _lastName = value;
                 OnPropertyChanged(nameof(LastName));
-                OnPropertyChanged(nameof(FullName));
             }
         }
 
@@ -133,10 +121,6 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        public string FullName
-        {
-            get { return $"{Name} {LastName}"; }
-        }
 
         public Investigator SelectedInvestigator
         {
@@ -144,6 +128,7 @@ namespace ProjetDotNet.ViewModels
             set
             {
                 _selectedInvestigator = value;
+                FillTextBox();
                 OnPropertyChanged(nameof(SelectedInvestigator));
             }
         }
@@ -153,15 +138,9 @@ namespace ProjetDotNet.ViewModels
         public ICommand AddInvestigatorCommand { get; set; }
         public ICommand UpdateInvestigatorCommand { get; set; }
         public ICommand DeleteInvestigatorCommand { get; set; }
+        public ICommand ClearFieldsCommand { get; set; }
 
 
-
-        // Implémentation de INotifyPropertyChanged pour la liaison de données
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         // Constructor
         public InvestigatorViewModel()
@@ -169,7 +148,7 @@ namespace ProjetDotNet.ViewModels
             AddInvestigatorCommand = new RelayCommand(AddInvestigator);
             UpdateInvestigatorCommand = new RelayCommand(UpdateInvestigator);
             DeleteInvestigatorCommand = new RelayCommand(DeleteInvestigator);
-
+            ClearFieldsCommand = new RelayCommand(ClearInvestigatorFields);
 
             using (var context = new ApplicationContext())
             {
@@ -178,8 +157,6 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-
-    
         private void AddInvestigator()
         {
             if (!CanAddInvestigator())
@@ -192,7 +169,6 @@ namespace ProjetDotNet.ViewModels
             {
                 var investigator = new Investigator()
                 {
-                    IsMain = IsMain,
                     Name = Name,
                     LastName = LastName,
                     Email = Email,
@@ -228,7 +204,6 @@ namespace ProjetDotNet.ViewModels
 
                 if (investigatorToUpdate != null)
                 {
-                    investigatorToUpdate.IsMain = IsMain;
                     investigatorToUpdate.Name = Name;
                     investigatorToUpdate.LastName = LastName;
                     investigatorToUpdate.Email = Email;
@@ -285,10 +260,9 @@ namespace ProjetDotNet.ViewModels
                    !string.IsNullOrEmpty(Street);
         }
 
-        public void ClearInvestigatorFields()
+        private void ClearInvestigatorFields()
         {
             SelectedInvestigator = null;
-            IsMain = false;
             Name = string.Empty;
             LastName = string.Empty;
             Email = string.Empty;
@@ -300,11 +274,10 @@ namespace ProjetDotNet.ViewModels
             Street = string.Empty;
         }
 
-        public void FillTextBox()
+        private void FillTextBox()
         {
             if (SelectedInvestigator != null)
             {
-                IsMain = SelectedInvestigator.IsMain;
                 Name = SelectedInvestigator.Name;
                 LastName = SelectedInvestigator.LastName;
                 Country = SelectedInvestigator.Country;
