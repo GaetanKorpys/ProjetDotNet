@@ -24,7 +24,10 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <Binding Path="InvestigationId"/>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="InvestigationStartDate"/>
+                                    <Binding Path="InvestigationId"/>
+                                </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
                     </DataTemplate>
@@ -93,9 +96,11 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1}">
+                                <MultiBinding StringFormat="{}{0} {1} {2} {3}">
                                     <Binding Path="LastName"/>
                                     <Binding Path="Name"/>
+                                    <Binding Path="City"/>
+                                    <Binding Path="Street"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>

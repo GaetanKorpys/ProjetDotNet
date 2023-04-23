@@ -35,8 +35,8 @@ namespace ProjetDotNet.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Investigation>(e => {
-                e.HasOne(x => x.Suspect).WithOne(x => x.Investigation).HasForeignKey<Suspect>(x => x.InvestigationId).IsRequired(false);
-                e.HasOne(x => x.Complainant).WithOne(x => x.Investigation).HasForeignKey<Complainant>(x => x.InvestigationId).IsRequired(false);
+                e.HasOne(x => x.Suspect).WithOne(x => x.Investigation).HasForeignKey<Investigation>(x => x.InvestigationId).IsRequired(false);
+                e.HasOne(x => x.Complainant).WithOne(x => x.Investigation).HasForeignKey<Investigation>(x => x.InvestigationId).IsRequired(false);
             });
         }
     }

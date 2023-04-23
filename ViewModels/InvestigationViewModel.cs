@@ -23,7 +23,7 @@ namespace ProjetDotNet.ViewModels
     public class InvestigationViewModel : BaseViewModel
     {
         private string _webBrowserAddress;
-        private ChromiumWebBrowser _webBrowser = new ChromiumWebBrowser();
+        private ChromiumWebBrowser _webBrowser;
         private Investigation _selectedInvestigation;
         private Investigator _selectedInvestigator;
         private Suspect _selectedSuspect;
@@ -100,9 +100,14 @@ namespace ProjetDotNet.ViewModels
             set
             {
                 _selectedInvestigator = value;
-                _webBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Paris&destination=Nice&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
-                //WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Nice&avoid=tolls";
                 OnPropertyChanged(nameof(SelectedInvestigator));
+                //_webBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Paris&destination=Nice&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                //WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Nice&avoid=tolls";
+
+                //TODO
+                //Objectif :
+                // - modifier l'adresse (url) du web browser en ajoutant l'adresse (pays, ville, rue ...) de l'inspecteur
+                // - rafraichir la vue
             }
         }
 
@@ -113,6 +118,10 @@ namespace ProjetDotNet.ViewModels
             {
                 _selectedSuspect = value;
                 OnPropertyChanged(nameof(SelectedSuspect));
+                //TODO
+                //Objectif :
+                // - modifier l'adresse (url) du web browser en ajoutant l'adresse (pays, ville, rue ...) du suspect
+                // - rafraichir la vue
             }
         }
 
@@ -181,13 +190,11 @@ namespace ProjetDotNet.ViewModels
                 var complainants = context.Complainants.ToList();
                 Complainants = new ObservableCollection<Complainant>(complainants);
             }
-
+            //Pour WebBrowser
+            /*TODO
             WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls";
             WebBrowser.LoadHtml("<html><body><iframe src  width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
-
-            //Pour WebBrowser
-            /*
-             * TODO
+       
             var settings = new CefSharp.WinForms.CefSettings();
             settings.CefCommandLineArgs.Add("disable-web-security");
             _webBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
@@ -231,6 +238,7 @@ namespace ProjetDotNet.ViewModels
         private void UpdateInvestigation()
         {
             throw new NotImplementedException();
+            //TODO
         }
 
         private void AddInvestigation()
@@ -304,7 +312,7 @@ namespace ProjetDotNet.ViewModels
 
         private void UpdateWebBrowser()
         {
-            Console.WriteLine("okkk");
+            //Todo
             //WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls";
             //WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
         }

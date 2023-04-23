@@ -154,7 +154,7 @@ namespace ProjetDotNet.ViewModels
 
         private void AddSuspect()
         {
-            if (!CanAddInvestigator())
+            if (!CanAddSuspect())
             {
                 MessageBox.Show("Veuillez remplir les champs nécéssaires.", "Erreur");
                 return;
@@ -236,7 +236,7 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        private bool CanAddInvestigator()
+        private bool CanAddSuspect()
         {
             // Check if all required fields have been filled
             return !string.IsNullOrEmpty(City) &&

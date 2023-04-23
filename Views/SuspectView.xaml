@@ -22,7 +22,12 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <Binding Path="Street"/>
+                                <MultiBinding StringFormat="{}{0} {1} {2} {3}">
+                                    <Binding Path="LastName"/>
+                                    <Binding Path="Name"/>
+                                    <Binding Path="City"/>
+                                    <Binding Path="Street"/>
+                                </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
                     </DataTemplate>
