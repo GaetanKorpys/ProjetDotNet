@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,19 @@ namespace ProjetDotNet.Models
 
     public class Investigation
     {
-        [Key] 
-        public string InvestigationNumber { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int InvestigationId { get; set; }
 
         public Investigator? Investigator { get; set; }
 
-        [Required]
+
+        public int? SuspectId { get; set; }
         public Suspect Suspect { get; set; }
 
-        [Required]
+
+        public int? ComplainantId { get; set; }
         public Complainant Complainant { get; set; }
+
 
         [Required]
         public string Reason { get; set; }
@@ -44,7 +48,7 @@ namespace ProjetDotNet.Models
         public DateTime? InvestigationEndDate { get; set; }
 
         [Required]
-        public Status Status { get; set; } = Status.Pending;
+        public Status Status { get; set; }
 
         public List<Visit> Visits { get; set; }
     }

@@ -34,6 +34,8 @@ namespace ProjetDotNet.Commands
                 viewModel.SelectedViewModel = new SuspectViewModel();
             else if (parameter.ToString() == "Complainant")
                 viewModel.SelectedViewModel = new ComplainantViewModel();
+            else if (parameter.ToString() == "Visit")
+                viewModel.SelectedViewModel = new VisitViewModel();
         }   
     }
 }

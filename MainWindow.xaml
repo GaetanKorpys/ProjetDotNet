@@ -4,7 +4,7 @@
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         xmlns:local="clr-namespace:ProjetDotNet"
        
-        Title="PoleInvestigation" Height="450" Width="800">
+        Title="PoleInvestigation" Height="550" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -27,6 +27,7 @@
                 <Button Content="Enqueteur" Command="{Binding UpdateViewCommand}" CommandParameter="Investigator"/>
                 <Button Content="Suspect" Command="{Binding UpdateViewCommand}" CommandParameter="Suspect"/>
                 <Button Content="Plaignant" Command="{Binding UpdateViewCommand}" CommandParameter="Complainant"/>
+                <Button Content="Visite sur site" Command="{Binding UpdateViewCommand}" CommandParameter="Visit"/>
             </StackPanel>
         </DockPanel>
 

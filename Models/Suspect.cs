@@ -36,8 +36,7 @@ namespace ProjetDotNet.Models
         public string Street { get; set; }
 
         //One to One relationships
-        public string InvestigationId { get; set; }
-
+        public int? InvestigationId { get; set; }
         public Investigation Investigation { get; set; }
     }
 }

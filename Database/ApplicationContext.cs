@@ -3,6 +3,7 @@ using ProjetDotNet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
@@ -22,13 +23,21 @@ namespace ProjetDotNet.Database
         public ApplicationContext()
         {
             _connectionString = Configuration.Configuration.connectionString;
-            Database.EnsureCreated();
+            Database.EnsureCreated();     
             //Database.EnsureDeleted();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_connectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Investigation>(e => {
+                e.HasOne(x => x.Suspect).WithOne(x => x.Investigation).HasForeignKey<Suspect>(x => x.InvestigationId).IsRequired(false);
+                e.HasOne(x => x.Complainant).WithOne(x => x.Investigation).HasForeignKey<Complainant>(x => x.InvestigationId).IsRequired(false);
+            });
         }
     }
 }

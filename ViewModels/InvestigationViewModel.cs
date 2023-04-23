@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using CefSharp.Wpf;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.EntityFrameworkCore;
 using ProjetDotNet.Database;
 using ProjetDotNet.Models;
 using System;
@@ -15,11 +16,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static System.Net.WebRequestMethods;
 
 namespace ProjetDotNet.ViewModels
 {
     public class InvestigationViewModel : BaseViewModel
     {
+        private string _webBrowserAddress;
         private ChromiumWebBrowser _webBrowser = new ChromiumWebBrowser();
         private Investigation _selectedInvestigation;
         private Investigator _selectedInvestigator;
@@ -97,6 +100,8 @@ namespace ProjetDotNet.ViewModels
             set
             {
                 _selectedInvestigator = value;
+                _webBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Paris&destination=Nice&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                //WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Nice&avoid=tolls";
                 OnPropertyChanged(nameof(SelectedInvestigator));
             }
         }
@@ -122,7 +127,16 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        public ChromiumWebBrowser WebBrowser 
+        public string WebBrowserAddress
+        {
+            get { return _webBrowserAddress; }
+            set
+            {
+                _webBrowserAddress = value;
+            }
+        }
+
+        public ChromiumWebBrowser WebBrowser
         {
             get { return _webBrowser; }
             set
@@ -146,11 +160,15 @@ namespace ProjetDotNet.ViewModels
         // Constructor
         public InvestigationViewModel()
         {
-            AddInvestigationCommand = new RelayCommand(AddInvestigator);
-            UpdateInvestigationCommand = new RelayCommand(UpdateInvestigator);
-            DeleteInvestigationCommand = new RelayCommand(DeleteInvestigator);
-            ClearFieldsCommand = new RelayCommand(ClearInvestigatorFields);
+            AddInvestigationCommand = new RelayCommand(AddInvestigation);
+            UpdateInvestigationCommand = new RelayCommand(UpdateInvestigation);
+            DeleteInvestigationCommand = new RelayCommand(DeleteInvestigation);
+            ClearFieldsCommand = new RelayCommand(ClearInvestigationFields);
             LoadHtmlCommand = new RelayCommand(UpdateWebBrowser);
+            WebBrowser = new ChromiumWebBrowser();
+
+            var settings = new CefSharp.WinForms.CefSettings();
+            settings.CefCommandLineArgs.Add("disable-web-security");
 
             using (var context = new ApplicationContext())
             {
@@ -162,7 +180,10 @@ namespace ProjetDotNet.ViewModels
 
                 var complainants = context.Complainants.ToList();
                 Complainants = new ObservableCollection<Complainant>(complainants);
-            }           
+            }
+
+            WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls";
+            WebBrowser.LoadHtml("<html><body><iframe src  width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
 
             //Pour WebBrowser
             /*
@@ -174,7 +195,7 @@ namespace ProjetDotNet.ViewModels
             */
         }
 
-        private void ClearInvestigatorFields()
+        private void ClearInvestigationFields()
         {
             SelectedInvestigator = null;
             SelectedComplainant = null;
@@ -186,41 +207,106 @@ namespace ProjetDotNet.ViewModels
            
         }
 
-        private void DeleteInvestigator()
+        private void DeleteInvestigation()
         {
-            if (SelectedInvestigator == null)
+            if (SelectedInvestigation == null)
             {
-                MessageBox.Show("Veuillez sélectionner un inspecteur à supprimer.", "Erreur");
+                MessageBox.Show("Veuillez sélectionner une enquete à supprimer.", "Erreur");
                 return;
             }
 
             using (var db = new ApplicationContext())
             {
-                var investigatorToDelete = db.Investigators.Find(SelectedInvestigator.InvestigatorId);
+                var investigationToDelete = db.Investigations.Find(SelectedInvestigation.InvestigationId);
 
-                if (investigatorToDelete != null)
+                if (investigationToDelete != null)
                 {
-                    db.Investigators.Remove(investigatorToDelete);
+                    db.Investigations.Remove(investigationToDelete);
                     db.SaveChanges();
-                    Investigators.Remove(SelectedInvestigator);
+                    Investigations.Remove(SelectedInvestigation);
                 }
             }
         }
 
-        private void UpdateInvestigator()
+        private void UpdateInvestigation()
         {
             throw new NotImplementedException();
         }
 
-        private void AddInvestigator()
+        private void AddInvestigation()
         {
-            throw new NotImplementedException();
+            if (!CanAddInvestigation())
+            {
+                MessageBox.Show("Veuillez remplir les champs nécéssaires.", "Erreur");
+                return; 
+            }
+
+            if (SelectedInvestigator != null)
+            {
+                using (var db = new ApplicationContext())
+                {
+
+                    var investigation = new Investigation()
+                    {
+                        Reason = Reason,
+                        NumberOfAnimals = NumberAnimals,
+                        AnimalBreed = AnimalType,
+                        Comments = Comments,
+                        InvestigationStartDate = DateTime.Now.Date,
+                        Suspect = SelectedSuspect,
+                        Complainant = SelectedComplainant,
+                        Investigator = SelectedInvestigator,
+                        Status = Status.InProgress
+
+                    };
+                    db.Investigations.Add(investigation);
+                    db.SaveChanges();
+
+                    // Add the new investigator to the list of investigators
+                    Investigations.Add(investigation);
+                }
+
+            }
+            else
+            {
+                using (var db = new ApplicationContext())
+                {
+                    var investigation = new Investigation()
+                    {
+                        Reason = Reason,
+                        NumberOfAnimals = NumberAnimals,
+                        AnimalBreed = AnimalType,
+                        Comments = Comments,
+                        InvestigationStartDate = DateTime.Now.Date,
+                        Suspect = SelectedSuspect,
+                        Complainant = SelectedComplainant,
+                        Status = Status.Pending
+
+                    };
+                    db.Investigations.Add(investigation);
+                    db.SaveChanges();
+
+                    // Add the new investigator to the list of investigators
+                    Investigations.Add(investigation);
+                }
+            }
+            ClearInvestigationFields();
+        }
+
+        private bool CanAddInvestigation()
+        {
+            return !string.IsNullOrEmpty(Reason) &&
+                  NumberAnimals != 0 &&
+                  !string.IsNullOrEmpty(AnimalType) &&
+                  SelectedSuspect != null &&
+                  SelectedComplainant != null;
         }
 
         private void UpdateWebBrowser()
         {
             Console.WriteLine("okkk");
-            _webBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+            //WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls";
+            //WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
         }
     }
 }

@@ -19,5 +19,8 @@
         <DataTemplate DataType="{x:Type viewmodels:SuspectViewModel}">
             <views:SuspectView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:VisitViewModel}">
+            <views:VisitView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

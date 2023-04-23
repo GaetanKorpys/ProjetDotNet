@@ -217,11 +217,6 @@ namespace ProjetDotNet.ViewModels
                     db.SaveChanges();
                 }
                 ClearInvestigatorFields();
-                using (var context = new ApplicationContext())
-                {
-                    var investigators = context.Investigators.ToList();
-                    Investigators = new ObservableCollection<Investigator>(investigators);
-                }
             }
         }
 
