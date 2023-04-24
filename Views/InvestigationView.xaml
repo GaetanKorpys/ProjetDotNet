@@ -131,8 +131,8 @@
             <Button Content="Afficher carte" Margin="0,10,0,0" Command="{Binding LoadHtmlCommand}" />
         </StackPanel>
         <Grid x:Name="MyGrid" Grid.Column="1" Margin="10,10,10,10">
-            <cefSharp:ChromiumWebBrowser 
-                                         WebBrowser ="{Binding WebBrowser}" 
+            <cefSharp:ChromiumWebBrowser x:Name ="chromWebBrowser"
+                                         WebBrowser ="{Binding WebBrowser, Mode=OneWayToSource}" 
                                          Address="{Binding WebBrowserAddress}"                                        
                                          IsBrowserInitializedChanged="browser_IsBrowserInitializedChanged"/>
         </Grid>

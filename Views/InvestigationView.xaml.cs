@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using CefSharp.Wpf;
+using ProjetDotNet.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,20 +27,25 @@ namespace ProjetDotNet.Views
         {
             //_webBrowser = new ChromiumWebBrowser();
             InitializeComponent();
-            
+
 
             // A mettre dans InvestigationViewModel par la suite
-            
-            //var settings = new CefSharp.WinForms.CefSettings();
-            //settings.CefCommandLineArgs.Add("disable-web-security");
-            //chromWebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+
+            var settings = new CefSharp.WinForms.CefSettings();
+            settings.CefCommandLineArgs.Add("disable-web-security");
+            chromWebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
             //MyGrid.Children.Add(_webBrowser);
+            
+            //vm.SelectedSuspect.
+
             
         }
 
         private void browser_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-             //chromWebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+            var vm = (InvestigationViewModel)this.DataContext;
+            vm.WebBrowser = chromWebBrowser;
+            //chromWebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
         }
     }
 }

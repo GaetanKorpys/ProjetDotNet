@@ -101,7 +101,7 @@ namespace ProjetDotNet.ViewModels
             {
                 _selectedInvestigator = value;
                 OnPropertyChanged(nameof(SelectedInvestigator));
-                //_webBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Paris&destination=Nice&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Paris&destination=Nice&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
                 //WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Nice&avoid=tolls";
 
                 //TODO
@@ -174,7 +174,7 @@ namespace ProjetDotNet.ViewModels
             DeleteInvestigationCommand = new RelayCommand(DeleteInvestigation);
             ClearFieldsCommand = new RelayCommand(ClearInvestigationFields);
             LoadHtmlCommand = new RelayCommand(UpdateWebBrowser);
-            WebBrowser = new ChromiumWebBrowser();
+            //WebBrowser = new ChromiumWebBrowser();
 
             var settings = new CefSharp.WinForms.CefSettings();
             settings.CefCommandLineArgs.Add("disable-web-security");
@@ -191,15 +191,15 @@ namespace ProjetDotNet.ViewModels
                 Complainants = new ObservableCollection<Complainant>(complainants);
             }
             //Pour WebBrowser
-            /*TODO
-            WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls";
-            WebBrowser.LoadHtml("<html><body><iframe src  width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
-       
-            var settings = new CefSharp.WinForms.CefSettings();
-            settings.CefCommandLineArgs.Add("disable-web-security");
-            _webBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
-            MyStackPanel.Children.Add(_webBrowser);
-            */
+
+            //WebBrowserAddress = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls";
+            //WebBrowser.LoadHtml("<html><body><iframe src=  width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+            
+            //var settings = new CefSharp.WinForms.CefSettings();
+            //settings.CefCommandLineArgs.Add("disable-web-security");
+            //_webBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=Nancy&destination=Metz&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+            //MyStackPanel.Children.Add(_webBrowser);
+            
         }
 
         private void ClearInvestigationFields()
