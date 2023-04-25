@@ -226,8 +226,30 @@ namespace ProjetDotNet.ViewModels
 
         private void UpdateInvestigation()
         {
-            throw new NotImplementedException();
-            //TODO
+            if (SelectedInvestigation == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une investigation à modifier.", "Erreur");
+                return;
+            }
+
+            using (var db = new ApplicationContext())
+            {
+                var investigationToUpdate = db.Investigations.Find(SelectedInvestigation.InvestigationId);
+
+                if (investigationToUpdate != null)
+                {
+                    investigationToUpdate.Comments = Comments;
+                    investigationToUpdate.Reason = Reason;
+                    investigationToUpdate.AnimalBreed = AnimalType;
+                    investigationToUpdate.NumberOfAnimals = NumberAnimals;
+                    investigationToUpdate.Investigator = SelectedInvestigator;
+                    investigationToUpdate.Suspect = SelectedSuspect;
+                    investigationToUpdate.Complainant = SelectedComplainant;
+
+                    db.SaveChanges();
+                }
+                ClearInvestigationFields();
+            }
         }
 
         private void AddInvestigation()
