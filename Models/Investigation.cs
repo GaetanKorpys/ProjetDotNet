@@ -18,15 +18,14 @@ namespace ProjetDotNet.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InvestigationId { get; set; }
 
+        public int InvestigatorId { get; set; }
         public Investigator? Investigator { get; set; }
 
 
-        public int? SuspectId { get; set; }
-        public Suspect Suspect { get; set; }
+        public Suspect? Suspect { get; set; }
 
 
-        public int? ComplainantId { get; set; }
-        public Complainant Complainant { get; set; }
+        public Complainant? Complainant { get; set; }
 
 
         [Required]
