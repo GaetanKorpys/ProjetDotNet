@@ -16,6 +16,9 @@
     <Compile Update="Views\InvestigatorView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\MainWindowView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SuspectView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,9 +27,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\ComplainantView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -34,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\InvestigatorView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MainWindowView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SuspectView.xaml">

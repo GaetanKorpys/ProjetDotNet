@@ -5,7 +5,7 @@
              xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
              xmlns:views="clr-namespace:ProjetDotNet.Views"
              xmlns:viewmodels="clr-namespace:ProjetDotNet.ViewModels"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Views/MainWindowView.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type viewmodels:ComplainantViewModel}">
             <views:ComplainantView/>
