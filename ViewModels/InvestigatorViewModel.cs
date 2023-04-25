@@ -159,9 +159,10 @@ namespace ProjetDotNet.ViewModels
 
         private void AddInvestigator()
         {
-            if (!CanAddInvestigator())
+            String erreur = CanAddInvestigator();
+            if (erreur != "")
             {
-                MessageBox.Show("Veuillez remplir tous les champs.", "Erreur");
+                MessageBox.Show("Veuillez remplir tous les champs:\n" + erreur, "Erreur");
                 return;
             }
 
@@ -241,7 +242,7 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        private bool CanAddInvestigator()
+       /* private bool CanAddInvestigator()
         {
             // Check if all required fields have been filled
             return !string.IsNullOrEmpty(Name) &&
@@ -253,6 +254,50 @@ namespace ProjetDotNet.ViewModels
                    PostalCode != 0 &&
                    NumberAdress != 0 &&
                    !string.IsNullOrEmpty(Street);
+        }*/
+
+        private String CanAddInvestigator()
+        {
+            String message = "";
+
+            if (string.IsNullOrEmpty(Name))
+            {
+                message += "- Le nom de l'inspecteur est vide !\n";
+            }
+            if (string.IsNullOrEmpty(LastName))
+            {
+                message += "- Le prénom de l'inspecteur est vide !\n";
+            }
+            if (string.IsNullOrEmpty(Email))
+            {
+                message += "- Le mail de l'inspecteur est vide !\n";
+            }
+            if (string.IsNullOrEmpty(PhoneNumber))
+            {
+                message += "- Le téléphone de l'inspecteur est vide !\n";
+            }
+            if (string.IsNullOrEmpty(City))
+            {
+                message += "- La ville de l'inspecteur est vide !\n";
+            }
+            if (string.IsNullOrEmpty(Country))
+            {
+                message += "- Le pays de l'inspecteur est vide !\n";
+            }
+            if (PostalCode != 0)
+            {
+                message += "- Le code postale de l'inspecteur est vide !\n";
+            }
+            if (NumberAdress != 0)
+            {
+                message += "- Le numéro de la rue de l'inspecteur est vide !\n";
+            }
+            if (string.IsNullOrEmpty(Street))
+            {
+                message += "- La rue de l'inspecteur est vide !\n";
+            }
+
+            return message;
         }
 
         private void ClearInvestigatorFields()

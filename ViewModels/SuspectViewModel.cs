@@ -154,9 +154,11 @@ namespace ProjetDotNet.ViewModels
 
         private void AddSuspect()
         {
-            if (!CanAddSuspect())
+
+            String erreur = CanAddSuspect();
+            if (erreur != "")
             {
-                MessageBox.Show("Veuillez remplir les champs nécéssaires.", "Erreur");
+                MessageBox.Show("Veuillez remplir les champs nécéssaires:\n" + erreur, "Erreur");
                 return;
             }
 
@@ -236,13 +238,38 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        private bool CanAddSuspect()
+        /*private bool CanAddSuspect()
         {
             // Check if all required fields have been filled
             return !string.IsNullOrEmpty(City) &&
                    !string.IsNullOrEmpty(Country) &&
                    PostalCode != 0 &&
                    !string.IsNullOrEmpty(Street);
+        }*/
+
+
+        private String CanAddSuspect()
+        {
+            String message = "";
+
+            if (string.IsNullOrEmpty(City))
+            {
+                message += "- Le ville du suspect est vide !\n";
+            }
+            if (string.IsNullOrEmpty(Country))
+            {
+                message += "- Le pays du suspect est vide !\n";
+            }
+            if (PostalCode != 0)
+            {
+                message += "- Le code postal du suspect est vide !\n";
+            }
+            if (string.IsNullOrEmpty(Street))
+            {
+                message += "- Le rue du suspect est vide !\n";
+            }
+
+            return message;
         }
 
         private void ClearInvestigatorFields()

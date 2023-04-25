@@ -5,87 +5,123 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetDotNet.Views"
         mc:Ignorable="d"
-        d:DesignHeight="500" d:DesignWidth="900">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="350" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        d:DesignHeight="700" d:DesignWidth="1400">
+       <DockPanel DockPanel.Dock="Top" Background="#FF3F7092">
+        <!-- Zone de création d'un nouveau suspect -->
+        <GroupBox Header=" Information Suspect " Margin="10,10,10,10" FontSize="16" DockPanel.Dock="Top">
+            <StackPanel Margin="5,5,5,5">
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Margin="10,10,10,10">
-            <!-- Liste déroulante pour sélectionner un inspecteur -->
-            <TextBlock Text="Sélectionnez un suspect :" />
-            <ComboBox x:Name="cmbSuspects"                         
+                    <!-- Liste déroulante pour sélectionner un suspect -->
+                    <TextBlock Text="Sélectionnez un Suspect :" HorizontalAlignment="Center" />
+                    <ComboBox x:Name="cmbSuspects"                         
                           SelectedItem="{Binding SelectedSuspect}"
-                          ItemsSource="{Binding Suspects}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} {2} {3}">
-                                    <Binding Path="LastName"/>
-                                    <Binding Path="Name"/>
-                                    <Binding Path="City"/>
-                                    <Binding Path="Street"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                          ItemsSource="{Binding Suspects}" Grid.Column="1">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1} {2} {3}">
+                                            <Binding Path="LastName"/>
+                                            <Binding Path="Name"/>
+                                            <Binding Path="City"/>
+                                            <Binding Path="Street"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
-            <!-- Zone de création d'un nouvel inspecteur -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                </Grid>
 
-                <!-- Champs pour le nom -->
-                <TextBlock Text="Nom : " Grid.Row="0" Grid.Column="0" />
-                <TextBox Text="{Binding LastName}" Grid.Row="0" Grid.Column="1" />
-                <!-- Champs pour le prénom -->
-                <TextBlock Text="Prénom : " Grid.Row="1" Grid.Column="0" />
-                <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-                <!-- Champs pour l'adresse e-mail -->
-                <TextBlock Text="Adresse e-mail : " Grid.Row="2" Grid.Column="0" />
-                <TextBox Text="{Binding Email}" Grid.Row="2" Grid.Column="1" />
-                <!-- Champs pour le numéro de téléphone -->
-                <TextBlock Text="Numéro de téléphone : " Grid.Row="3" Grid.Column="0" />
-                <TextBox Text="{Binding PhoneNumber}" Grid.Row="3" Grid.Column="1" />
-                <!-- Champs pour la ville -->
-                <TextBlock Text="Ville : " Grid.Row="4" Grid.Column="0" />
-                <TextBox Text="{Binding City}" Grid.Row="4" Grid.Column="1" />
-                <!-- Champs pour le pays -->
-                <TextBlock Text="Pays : " Grid.Row="5" Grid.Column="0" />
-                <TextBox Text="{Binding Country}" Grid.Row="5" Grid.Column="1" />
-                <!-- Champs pour le code postal -->
-                <TextBlock Text="Code postal : " Grid.Row="6" Grid.Column="0" />
-                <TextBox Text="{Binding PostalCode}" Grid.Row="6" Grid.Column="1" />
-                <!-- Champs pour le numéro de rue -->
-                <TextBlock Text="Numéro de rue : " Grid.Row="7" Grid.Column="0" />
-                <TextBox Text="{Binding NumberAdress}" Grid.Row="7" Grid.Column="1" />
-                <!-- Champs pour le nom de rue -->
-                <TextBlock Text="Nom de rue : " Grid.Row="8" Grid.Column="0" />
-                <TextBox Text="{Binding Street}" Grid.Row="8" Grid.Column="1" />
-            </Grid>
-            <Button Content="Ajouter" Margin="0,10,0,0" Command="{Binding AddSuspectCommand}" />
-            <Button Content="Mettre à jour" Margin="0,10,0,0" Command="{Binding UpdateSuspectCommand}" />
-            <Button Content="Supprimer" Margin="0,10,0,0" Command="{Binding DeleteSuspectCommand}" />
-            <Button Content="Nettoyer champs" Margin="0,10,0,0" Command="{Binding ClearFieldsCommand}" />
+                <Separator Margin="0,5,0,2"/>
+
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Champs pour le nom -->
+                    <DockPanel Margin="11,5,10,5">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" AutomationProperties.Name="txt"><Run Text="Nom :"/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding LastName}" Style="{StaticResource TextBoxTheme}" Tag="Nom..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                    <!-- Champs pour le prénom -->
+                    <DockPanel Margin="10,5,9,5" Grid.Column="2">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Prénom :"/><Run Text=" "/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding Name}" Style="{StaticResource TextBoxTheme}" Tag="Prénom..." TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                </Grid>
+                
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Champs pour le mail -->
+                    <DockPanel Margin="10,5,10,5">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Mail :"/><Run Text=" "/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding Email}" Style="{StaticResource TextBoxTheme}" Tag="Mail..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                    <!-- Champs pour le numéro de téléphone -->
+                    <DockPanel Margin="10,5,10,5" Grid.Column="1">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Téléphone :"/><Run Text=" "/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding PhoneNumber}" Style="{StaticResource TextBoxTheme}" Tag="Téléphone..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                </Grid>
+                <Grid Grid.IsSharedSizeScope="True">
+                    <!-- Champs pour le Pays -->
+                    <DockPanel Margin="10,5,10,5">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Pays :"/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding Country}" Style="{StaticResource TextBoxTheme}" Tag="Pays..."  TextWrapping="Wrap" DockPanel.Dock="Bottom" AllowDrop="True"/>
+                    </DockPanel>
+                </Grid>
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Champs pour la ville -->
+                    <DockPanel Margin="10,5,10,5">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Ville :"/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding City}" Style="{StaticResource TextBoxTheme}" Tag="Ville..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                    <!-- Champs pour le code postale -->
+                    <DockPanel Margin="10,5,10,5" Grid.Column="2">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Code Postale :"/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding PostalCode}" Style="{StaticResource TextBoxTheme}" Tag="Code Postale..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                </Grid>
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="8*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Champs pour le numéro de rue -->
+                    <DockPanel Margin="10,5,10,5">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Numéro Rue :"/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding NumberAdress}" Style="{StaticResource TextBoxTheme}" Tag="N° Rue..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                    <!-- Champs pour la rue -->
+                    <DockPanel Margin="10,5,10,5" Grid.Column="2">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Rue :"/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBox Text="{Binding Street}" Style="{StaticResource TextBoxTheme}" Tag="La rue..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource BoutonTheme}" Command="{Binding AddSuspectCommand}" Content="Ajouter" Height="50" Width="150" Margin="5,5,5,5"/>
+                <Button Style="{StaticResource BoutonTheme}" Command="{Binding UpdateSuspectCommand}" Content="Mettre à jour" Height="50" Width="150" Margin="5,5,5,5" Background="#FFB56A3F"/>
+                <Button Style="{StaticResource BoutonTheme}" Command="{Binding DeleteSuspectCommand}" Content="Supprimer" Height="50" Width="150" Margin="5,5,5,5" Background="#FFB53F3F"/>
+            </StackPanel>
+            <Button Style="{StaticResource BoutonTheme}" Command="{Binding ClearFieldsCommand}" Content="Nettoyer" Height="50" Width="150" Margin="5,5,5,5"/>
         </StackPanel>
-    </Grid>
+    </DockPanel>
 </UserControl>

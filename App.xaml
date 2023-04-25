@@ -7,21 +7,29 @@
              xmlns:viewmodels="clr-namespace:ProjetDotNet.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:ComplainantViewModel}">
-            <views:ComplainantView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:InvestigatorViewModel}">
-            <views:InvestigatorView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:InvestigationViewModel}">
-            <views:InvestigationView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:SuspectViewModel}">
-            <views:SuspectView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:VisitViewModel}">
-            <views:VisitView/>
-        </DataTemplate>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/AppTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewmodels:ComplainantViewModel}">
+                <views:ComplainantView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:InvestigatorViewModel}">
+                <views:InvestigatorView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:InvestigationViewModel}">
+                <views:InvestigationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SuspectViewModel}">
+                <views:SuspectView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:VisitViewModel}">
+                <views:VisitView/>
+            </DataTemplate>
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>
  

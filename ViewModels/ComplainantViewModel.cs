@@ -154,9 +154,10 @@ namespace ProjetDotNet.ViewModels
 
         private void AddComplainant()
         {
-            if (!CanAddComplainant())
+            String erreur = CanAddComplainant();
+            if (erreur != "")
             {
-                MessageBox.Show("Veuillez remplir tous les champs.", "Erreur");
+                MessageBox.Show("Veuillez remplir tous les champs:\n" + erreur, "Erreur");
                 return;
             }
 
@@ -236,7 +237,7 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        private bool CanAddComplainant()
+        /*private bool CanAddComplainant()
         {
             // Check if all required fields have been filled
             return !string.IsNullOrEmpty(Name) &&
@@ -248,7 +249,52 @@ namespace ProjetDotNet.ViewModels
                    PostalCode != 0 &&
                    NumberAdress != 0 &&
                    !string.IsNullOrEmpty(Street);
+        }*/
+
+        private String CanAddComplainant()
+        {
+            String message = "";
+
+            if (string.IsNullOrEmpty(Name))
+            {
+                message += "- Le nom du plaignant est vide !\n";
+            }
+            if (string.IsNullOrEmpty(LastName))
+            {
+                message += "- Le prénom du plaignant est vide !\n";
+            }
+            if (string.IsNullOrEmpty(Email))
+            {
+                message += "- Le mail du plaignant est vide !\n";
+            }
+            if (string.IsNullOrEmpty(PhoneNumber))
+            {
+                message += "- Le téléphone du plaignant est vide !\n";
+            }
+            if (string.IsNullOrEmpty(City))
+            {
+                message += "- La ville du plaignant est vide !\n";
+            }
+            if (string.IsNullOrEmpty(Country))
+            {
+                message += "- Le pays du plaignant est vide !\n";
+            }
+            if (PostalCode != 0)
+            {
+                message += "- Le code postale du plaignant est vide !\n";
+            }
+            if (NumberAdress != 0)
+            {
+                message += "- Le numéro de la rue du plaignant est vide !\n";
+            }
+            if (string.IsNullOrEmpty(Street))
+            {
+                message += "- La rue du plaignant est vide !\n";
+            }
+
+            return message;
         }
+
 
         private void ClearInvestigatorFields()
         {
