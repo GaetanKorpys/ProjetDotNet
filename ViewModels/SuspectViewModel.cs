@@ -260,7 +260,7 @@ namespace ProjetDotNet.ViewModels
             {
                 message += "- Le pays du suspect est vide !\n";
             }
-            if (PostalCode != 0)
+            if (PostalCode == 0)
             {
                 message += "- Le code postal du suspect est vide !\n";
             }

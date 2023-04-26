@@ -279,11 +279,11 @@ namespace ProjetDotNet.ViewModels
             {
                 message += "- Le pays du plaignant est vide !\n";
             }
-            if (PostalCode != 0)
+            if (PostalCode == 0)
             {
                 message += "- Le code postale du plaignant est vide !\n";
             }
-            if (NumberAdress != 0)
+            if (NumberAdress == 0)
             {
                 message += "- Le numéro de la rue du plaignant est vide !\n";
             }

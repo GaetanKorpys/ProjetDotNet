@@ -5,8 +5,81 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProjetDotNet.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="900">
-    <Grid>
-            
-    </Grid>
+              d:DesignHeight="700" d:DesignWidth="1600">
+    <DockPanel DockPanel.Dock="Top" Background="#FF3F7092">
+        <!-- Zone de création d'un nouveau suspect -->
+        <GroupBox Header=" Information Visite " Margin="10,10,10,10" FontSize="16" DockPanel.Dock="Top">
+            <StackPanel Margin="5,5,5,5">
+                <Grid Grid.IsSharedSizeScope="True" HorizontalAlignment="Center" Width="700">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Liste déroulante pour sélectionner une enquête -->
+                    <TextBlock Text="Sélectionnez une Enquête :" HorizontalAlignment="Center" />
+                    <ComboBox x:Name="cmbInvestigations"                         
+                          SelectedItem="{Binding SelectedInvestigation}"
+                          ItemsSource="{Binding Investigations}" Grid.Column="1">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="InvestigationStartDate"/>
+                                            <Binding Path="InvestigationId"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                </Grid>
+
+                <Separator Margin="0,5,0,5"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.IsSharedSizeScope="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Liste déroulante pour sélectionner une enquête -->
+                        <TextBlock Text="Sélectionnez un Enqueteur :" HorizontalAlignment="Center" />
+                        <ComboBox x:Name="cmbInvestigators"                         
+                          SelectedItem="{Binding SelectedInvestigator}"
+                          ItemsSource="{Binding Investigators}" Grid.Column="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                <Binding Path="LastName"/>
+                                                <Binding Path="Name"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                    
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource BoutonTheme}" Command="{Binding AddVisitCommand}" Content="Ajouter" Height="50" Width="150" Margin="5,5,5,5"/>
+                <Button Style="{StaticResource BoutonTheme}" Command="{Binding UpdateVisitCommand}" Content="Mettre à jour" Height="50" Width="150" Margin="5,5,5,5" Background="#FFB56A3F"/>
+                <Button Style="{StaticResource BoutonTheme}" Command="{Binding DeleteVisitCommand}" Content="Supprimer" Height="50" Width="150" Margin="5,5,5,5" Background="#FFB53F3F"/>
+            </StackPanel>
+            <Button Style="{StaticResource BoutonTheme}" Command="{Binding ClearFieldsCommand}" Content="Nettoyer" Height="50" Width="150" Margin="5,5,5,5"/>
+        </StackPanel>
+    </DockPanel>
 </UserControl>

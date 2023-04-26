@@ -26,7 +26,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Liste déroulante pour sélectionner une enquête -->
-                    <TextBlock Text="Sélectionnez un suspect :" HorizontalAlignment="Center" />
+                    <TextBlock Text="Sélectionnez une Enquête :" HorizontalAlignment="Center" />
                     <ComboBox x:Name="cmbInvestigations"                         
                             SelectedItem="{Binding SelectedInvestigation}"
                             ItemsSource="{Binding Investigations}" Grid.Column="1">

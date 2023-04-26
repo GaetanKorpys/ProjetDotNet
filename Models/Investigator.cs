@@ -14,8 +14,6 @@ namespace ProjetDotNet.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InvestigatorId { get; set; }
 
-        public bool? IsMain { get; set; }
-
         [Required]
         public string Name { get; set; }
 

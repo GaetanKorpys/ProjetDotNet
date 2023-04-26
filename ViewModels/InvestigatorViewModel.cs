@@ -284,11 +284,11 @@ namespace ProjetDotNet.ViewModels
             {
                 message += "- Le pays de l'inspecteur est vide !\n";
             }
-            if (PostalCode != 0)
+            if (PostalCode == 0)
             {
                 message += "- Le code postale de l'inspecteur est vide !\n";
             }
-            if (NumberAdress != 0)
+            if (NumberAdress == 0)
             {
                 message += "- Le numéro de la rue de l'inspecteur est vide !\n";
             }

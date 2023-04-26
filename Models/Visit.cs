@@ -19,12 +19,17 @@ namespace ProjetDotNet.Models
 
         public byte[]? ProofPicture { get; set; }
 
-        public string? Comments { get; set; }
+        [Required]
+        public string Comments { get; set; }
 
         [Required]
         public DateTime VisitDate { get; set; }
 
-        public List<Investigator> Investigators { get; set;}
- 
+        public List<Investigator> Investigators { get; set; }
+
+        //One to Many relationships
+        public int? InvestigationId { get; set; }
+        public Investigation Investigation { get; set; }
+
     }
 }

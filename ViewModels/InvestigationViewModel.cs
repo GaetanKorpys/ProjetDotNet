@@ -7,6 +7,7 @@ using ProjetDotNet.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.DirectoryServices.ActiveDirectory;
 using System.IO;
@@ -33,6 +34,8 @@ namespace ProjetDotNet.ViewModels
         private string _comments;
         private string _animalType;
         private bool _isMainInvestigator;
+        private int _numberInvestigationInCharge;
+        private int _numberInvestigationNotInCharge;
 
         public int NumberAnimals
         {
@@ -84,6 +87,26 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
+        public int NumberInvestigationInCharge 
+        {
+            get { return _numberInvestigationInCharge; }
+            set
+            {
+                _numberInvestigationInCharge = value;
+                OnPropertyChanged(nameof(NumberInvestigationInCharge));
+            }
+        }
+
+        public int NumberInvestigationNotInCharge
+        {
+            get { return _numberInvestigationNotInCharge; }
+            set
+            {
+                _numberInvestigationNotInCharge = value;
+                OnPropertyChanged(nameof(NumberInvestigationNotInCharge));
+            }
+        }
+
         public Investigation SelectedInvestigation
         {
             get { return _selectedInvestigation; }
@@ -101,10 +124,21 @@ namespace ProjetDotNet.ViewModels
             {
                 _selectedInvestigator = value;
                 OnPropertyChanged(nameof(SelectedInvestigator));
-                if(SelectedSuspect != null)
+
+                using (var context = new ApplicationContext())
+                {
+
+                    //NumberInvestigationInCharge = context.
+                    //Visits = new ObservableCollection<Visit>(visits);
+                }
+
+
+                if (SelectedSuspect != null)
                     WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedSuspect.City + "&destination="+ _selectedInvestigator.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
                 else
                     WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedInvestigator.City + "&destination=" + _selectedInvestigator.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+
+
             }
         }
 
@@ -162,7 +196,6 @@ namespace ProjetDotNet.ViewModels
         public ICommand UpdateInvestigationCommand { get; set; }
         public ICommand DeleteInvestigationCommand { get; set; }
         public ICommand ClearFieldsCommand { get; set; }
-        public ICommand LoadHtmlCommand { get; set; }
 
         // Constructor
         public InvestigationViewModel()
@@ -281,6 +314,9 @@ namespace ProjetDotNet.ViewModels
                         Status = Status.InProgress
 
                     };
+
+                    investigator.Investigations.Add(investigation);
+
                     db.Investigations.Add(investigation);
                     db.SaveChanges();
 

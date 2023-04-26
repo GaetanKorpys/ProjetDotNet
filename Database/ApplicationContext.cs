@@ -19,6 +19,7 @@ namespace ProjetDotNet.Database
         public DbSet<Investigator> Investigators { get; set; }
         public DbSet<Complainant> Complainants { get; set; }
         public DbSet<Suspect> Suspects { get; set; }
+        public DbSet<Visit> Visits { get; set; }
 
         public ApplicationContext()
         {
