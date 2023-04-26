@@ -6,19 +6,19 @@
       xmlns:local="clr-namespace:ProjetDotNet.Views"
       xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"       
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1400">
+      d:DesignHeight="700" d:DesignWidth="1600">
 
     <Grid Background="#FF3F7092">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65*"/>
-            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="79*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
             <RowDefinition Height="35*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header=" Information Enquête " FontSize="16" Margin="5,5,5,5">
-            <StackPanel Margin="5,5,5,5">
+        <GroupBox Header=" Information Enquête " FontSize="16" Margin="20,21,15,5">
+            <StackPanel Margin="5,15,5,5">
                 <Grid Grid.IsSharedSizeScope="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -185,7 +185,7 @@
                 </Grid>
             </StackPanel>
         </GroupBox>
-        <StackPanel HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Height="180" Width="480">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Style="{StaticResource BoutonTheme}" Command="{Binding AddInvestigationCommand}" Content="Ajouter" Height="50" Width="150" Margin="5,5,5,5"/>
                 <Button Style="{StaticResource BoutonTheme}" Command="{Binding UpdateInvestigationCommand}" Content="Mettre à jour" Height="50" Width="150" Margin="5,5,5,5" Background="#FFB56A3F"/>
@@ -194,11 +194,27 @@
             <Button Style="{StaticResource BoutonTheme}" Command="{Binding ClearFieldsCommand}" Content="Nettoyer" Height="50" Width="150" Margin="5,5,5,5"/>
             <Button Style="{StaticResource BoutonTheme}" Command="{Binding LoadHtmlCommand}" Content="Afficher carte" Height="50" Width="150" Margin="5,5,5,5"/>
         </StackPanel>
-        <Grid x:Name="MyGrid" Grid.Column="1">
-            <cefSharp:ChromiumWebBrowser x:Name ="chromWebBrowser"
+
+        <GroupBox Header=" Information Enquêteur " FontSize="16" Grid.Column="1" Margin="65,25,91,307">
+            <StackPanel Margin="15,0,0,0" HorizontalAlignment="Left" Height="57" VerticalAlignment="Center">
+                <StackPanel x:Name="MyStackPanel" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="392">
+                    <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Actuellement en charge de "/></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationInCharge}"/></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text=" enquête(s)."/></TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="MyStackPanel2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Height="30" Width="434">
+                    <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Nombre de visite en tant que Délégué Enquêteur Secondaire : "/></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationNotInCharge}"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header=" Information Géographique" FontSize="16" Grid.Column="1" Margin="65,170,140,45" Grid.RowSpan="2">
+            <StackPanel>
+                <cefSharp:ChromiumWebBrowser x:Name ="chromWebBrowser"
                     WebBrowser ="{Binding WebBrowser, Mode=OneWayToSource}" 
                     Address="{Binding WebBrowserAddress}"                                        
-                    IsBrowserInitializedChanged="browser_IsBrowserInitializedChanged"/>
-        </Grid>
+                    IsBrowserInitializedChanged="browser_IsBrowserInitializedChanged" Height="430" Width="614"/>
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </UserControl>
