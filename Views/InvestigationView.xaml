@@ -35,7 +35,7 @@
                                 <TextBlock>
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0} {1}">
-                                            <Binding Path="InvestigationStartDate"/>
+                                            <Binding Path="InvestigationStartDate" Converter="{StaticResource DateConverter}"/>
                                             <Binding Path="InvestigationId"/>
                                         </MultiBinding>
                                     </TextBlock.Text>

@@ -5,10 +5,12 @@
              xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
              xmlns:views="clr-namespace:ProjetDotNet.Views"
              xmlns:viewmodels="clr-namespace:ProjetDotNet.ViewModels"
+             xmlns:converters="clr-namespace:ProjetDotNet.Converters"
              StartupUri="Views/MainWindowView.xaml">
     <Application.Resources>
 
         <ResourceDictionary>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/AppTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
@@ -28,6 +30,9 @@
             <DataTemplate DataType="{x:Type viewmodels:VisitViewModel}">
                 <views:VisitView/>
             </DataTemplate>
+
+            <converters:DateConverter x:Key="DateConverter"/>
+
         </ResourceDictionary>
 
     </Application.Resources>
