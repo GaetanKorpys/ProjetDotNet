@@ -25,7 +25,7 @@ namespace ProjetDotNet.Models
         [Required]
         public DateTime VisitDate { get; set; }
 
-        public List<Investigator> Investigators { get; set; }
+        public List<Investigator> Investigators { get; set; } = new List<Investigator>();
 
         //One to Many relationships
         public int? InvestigationId { get; set; }

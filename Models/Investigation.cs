@@ -49,6 +49,6 @@ namespace ProjetDotNet.Models
         [Required]
         public Status Status { get; set; }
 
-        public List<Visit> Visits { get; set; }
+        public List<Visit> Visits { get; set; } = new List<Visit>();
     }
 }

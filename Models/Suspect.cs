@@ -37,6 +37,7 @@ namespace ProjetDotNet.Models
 
         //One to One relationships
         public int? InvestigationId { get; set; }
+
         public Investigation Investigation { get; set; }
     }
 }

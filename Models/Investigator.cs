@@ -42,7 +42,7 @@ namespace ProjetDotNet.Models
         public string Street { get; set; }
 
 
-        public List<Investigation> Investigations { get; set; }
+        public List<Investigation> Investigations { get; set; } = new List<Investigation>();
 
     }
 }

@@ -33,7 +33,6 @@ namespace ProjetDotNet.ViewModels
         private string _reason;
         private string _comments;
         private string _animalType;
-        private bool _isMainInvestigator;
         private int _numberInvestigationInCharge;
         private int _numberInvestigationNotInCharge;
 
@@ -74,16 +73,6 @@ namespace ProjetDotNet.ViewModels
             {
                 _animalType = value;
                 OnPropertyChanged(nameof(AnimalType));
-            }
-        }
-
-        public bool IsMainInvestigator
-        {
-            get { return _isMainInvestigator; }
-            set
-            {
-                _isMainInvestigator = value;
-                OnPropertyChanged(nameof(IsMainInvestigator));
             }
         }
 
@@ -128,17 +117,24 @@ namespace ProjetDotNet.ViewModels
                 using (var context = new ApplicationContext())
                 {
 
-                    //NumberInvestigationInCharge = context.
-                    //Visits = new ObservableCollection<Visit>(visits);
+                    NumberInvestigationInCharge = context.Investigations.Where(i =>i.Status == Status.InProgress && i.Investigator == SelectedInvestigator).Count();
+                    var tmp = context.Visits.Where(v => v.Investigators.Contains(SelectedInvestigator)).Count() - NumberInvestigationInCharge;
+                    if (tmp < 0)
+                        NumberInvestigationNotInCharge = 0;
+                    else
+                        NumberInvestigationNotInCharge = tmp;
+
                 }
 
 
-                if (SelectedSuspect != null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedSuspect.City + "&destination="+ _selectedInvestigator.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
-                else
+                if (SelectedSuspect != null && _selectedInvestigator != null)
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedInvestigator.City + "&destination="+ SelectedSuspect.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                else if(SelectedSuspect != null && _selectedInvestigator == null)
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedSuspect.City + "&destination=" + SelectedSuspect.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                else if (SelectedSuspect == null && _selectedInvestigator == null)
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/place?q=France&key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg\" width=\"450\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                else if(SelectedSuspect == null && _selectedInvestigator != null)
                     WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedInvestigator.City + "&destination=" + _selectedInvestigator.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
-
-
             }
         }
 
@@ -149,10 +145,14 @@ namespace ProjetDotNet.ViewModels
             {
                 _selectedSuspect = value;
                 OnPropertyChanged(nameof(SelectedSuspect));
-                if (SelectedInvestigator != null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedSuspect.City + "&destination=" + SelectedInvestigator.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
-                else
+                if (_selectedSuspect != null && SelectedInvestigator != null)
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedInvestigator.City + "&destination=" + _selectedSuspect.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                else if (_selectedSuspect != null && SelectedInvestigator == null)
                     WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedSuspect.City + "&destination=" + _selectedSuspect.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                else if (_selectedSuspect == null && SelectedInvestigator == null)
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/place?q=France&key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg\" width=\"450\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                else if (_selectedSuspect == null && SelectedInvestigator != null)
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedInvestigator.City + "&destination=" + SelectedInvestigator.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
             }
         }
 

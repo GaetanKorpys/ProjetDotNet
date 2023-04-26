@@ -116,16 +116,6 @@
                     </ComboBox>
                 </Grid>
 
-                <Grid Grid.IsSharedSizeScope="True" Margin="5,5,5,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="7*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Champs pour le numéro de téléphone -->
-                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Est-ce l'inspecteur principal ?"/></TextBlock>
-                    <CheckBox IsChecked="{Binding IsMainInvestigator}" Grid.Column="1" VerticalAlignment="Center" />
-                </Grid>
 
                 <Separator Margin="0,5,0,2"/>
 
@@ -192,7 +182,6 @@
                 <Button Style="{StaticResource BoutonTheme}" Command="{Binding DeleteInvestigationCommand}" Content="Supprimer" Height="50" Width="150" Margin="5,5,5,5" Background="#FFB53F3F"/>
             </StackPanel>
             <Button Style="{StaticResource BoutonTheme}" Command="{Binding ClearFieldsCommand}" Content="Nettoyer" Height="50" Width="150" Margin="5,5,5,5"/>
-            <Button Style="{StaticResource BoutonTheme}" Command="{Binding LoadHtmlCommand}" Content="Afficher carte" Height="50" Width="150" Margin="5,5,5,5"/>
         </StackPanel>
 
         <GroupBox Header=" Information Enquêteur " FontSize="16" Grid.Column="1" Margin="65,25,91,307">
@@ -203,7 +192,7 @@
                     <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text=" enquête(s)."/></TextBlock>
                 </StackPanel>
                 <StackPanel x:Name="MyStackPanel2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Height="30" Width="434">
-                    <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Nombre de visite en tant que Délégué Enquêteur Secondaire : "/></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Nombre de visites effectués : "/></TextBlock>
                     <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationNotInCharge}"/></TextBlock>
                 </StackPanel>
             </StackPanel>
@@ -211,7 +200,7 @@
         <GroupBox Header=" Information Géographique" FontSize="16" Grid.Column="1" Margin="65,170,140,45" Grid.RowSpan="2">
             <StackPanel>
                 <cefSharp:ChromiumWebBrowser x:Name ="chromWebBrowser"
-                    WebBrowser ="{Binding WebBrowser, Mode=OneWayToSource}" 
+                    WebBrowser ="{Binding WebBrowser}" 
                     Address="{Binding WebBrowserAddress}"                                        
                     IsBrowserInitializedChanged="browser_IsBrowserInitializedChanged" Height="430" Width="614"/>
             </StackPanel>
