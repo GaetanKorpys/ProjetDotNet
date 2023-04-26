@@ -48,12 +48,12 @@
                     </Grid.ColumnDefinitions>
                     <!-- Champs pour le nom -->
                     <DockPanel Margin="11,5,10,5">
-                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" AutomationProperties.Name="txt"><Run Text="Nom :"/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" AutomationProperties.Name="txt"><Run Text="Nom :"/></TextBlock>
                         <TextBox Text="{Binding LastName}" Style="{StaticResource TextBoxTheme}" Tag="Nom..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
                     </DockPanel>
                     <!-- Champs pour le prénom -->
                     <DockPanel Margin="10,5,9,5" Grid.Column="2">
-                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Prénom :"/><Run Text=" "/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Prénom :"/><Run Text=" "/></TextBlock>
                         <TextBox Text="{Binding Name}" Style="{StaticResource TextBoxTheme}" Tag="Prénom..." TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
                     </DockPanel>
                 </Grid>
@@ -65,12 +65,12 @@
                     </Grid.ColumnDefinitions>
                     <!-- Champs pour le mail -->
                     <DockPanel Margin="10,5,10,5">
-                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Mail :"/><Run Text=" "/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Mail :"/><Run Text=" "/></TextBlock>
                         <TextBox Text="{Binding Email}" Style="{StaticResource TextBoxTheme}" Tag="Mail..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
                     </DockPanel>
                     <!-- Champs pour le numéro de téléphone -->
                     <DockPanel Margin="10,5,10,5" Grid.Column="1">
-                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Téléphone :"/><Run Text=" "/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Téléphone :"/><Run Text=" "/></TextBlock>
                         <TextBox Text="{Binding PhoneNumber}" Style="{StaticResource TextBoxTheme}" Tag="Téléphone..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
                     </DockPanel>
                 </Grid>
@@ -104,7 +104,7 @@
                     </Grid.ColumnDefinitions>
                     <!-- Champs pour le numéro de rue -->
                     <DockPanel Margin="10,5,10,5">
-                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Numéro Rue :"/><Run Text="*" Foreground="Red"/></TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Numéro Rue :"/></TextBlock>
                         <TextBox Text="{Binding NumberAdress}" Style="{StaticResource TextBoxTheme}" Tag="N° Rue..."  TextWrapping="Wrap" DockPanel.Dock="Bottom"/>
                     </DockPanel>
                     <!-- Champs pour la rue -->
