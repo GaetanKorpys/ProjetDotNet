@@ -31,7 +31,7 @@ namespace ProjetDotNet.Views
             // A mettre dans InvestigationViewModel par la suite
             var settings = new CefSharp.WinForms.CefSettings();
             settings.CefCommandLineArgs.Add("disable-web-security");
-            chromWebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/place?q=France&key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg\" width=\"450\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+            chromWebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/place?q=France&key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border: 0;\"></iframe></body></html>");
         }
 
         private void browser_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)

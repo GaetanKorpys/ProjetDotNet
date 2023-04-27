@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetDotNet.Views"
         mc:Ignorable="d"
-        Title="Pôle Investigation" Height="700" Width="1600">
+        Title="Pôle Investigation" Height="700" Width="1600"
+        MinHeight="700"
+        MinWidth="1600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="12*"/>

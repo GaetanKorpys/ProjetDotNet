@@ -128,13 +128,13 @@ namespace ProjetDotNet.ViewModels
 
 
                 if (SelectedSuspect != null && _selectedInvestigator != null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedInvestigator.City + "&destination="+ SelectedSuspect.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedInvestigator.City + " " + _selectedInvestigator.NumberAdress + " " +_selectedInvestigator.Street + "&destination="+ SelectedSuspect.City + "&avoid=tolls\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
                 else if(SelectedSuspect != null && _selectedInvestigator == null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedSuspect.City + "&destination=" + SelectedSuspect.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedSuspect.City + "&destination=" + SelectedSuspect.City + "&avoid=tolls\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
                 else if (SelectedSuspect == null && _selectedInvestigator == null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/place?q=France&key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg\" width=\"450\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/place?q=France&key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
                 else if(SelectedSuspect == null && _selectedInvestigator != null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedInvestigator.City + "&destination=" + _selectedInvestigator.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedInvestigator.City + "&destination=" + _selectedInvestigator.City + "&avoid=tolls\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
             }
         }
 
@@ -146,13 +146,13 @@ namespace ProjetDotNet.ViewModels
                 _selectedSuspect = value;
                 OnPropertyChanged(nameof(SelectedSuspect));
                 if (_selectedSuspect != null && SelectedInvestigator != null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedInvestigator.City + "&destination=" + _selectedSuspect.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedInvestigator.City + "&destination=" + _selectedSuspect.City + "&avoid=tolls\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
                 else if (_selectedSuspect != null && SelectedInvestigator == null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedSuspect.City + "&destination=" + _selectedSuspect.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + _selectedSuspect.City + "&destination=" + _selectedSuspect.City + "&avoid=tolls\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
                 else if (_selectedSuspect == null && SelectedInvestigator == null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/place?q=France&key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg\" width=\"450\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/place?q=France&key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
                 else if (_selectedSuspect == null && SelectedInvestigator != null)
-                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedInvestigator.City + "&destination=" + SelectedInvestigator.City + "&avoid=tolls\" width=\"800\" height=\"400\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
+                    WebBrowser.LoadHtml("<html><body><iframe src=\"https://www.google.com/maps/embed/v1/directions?key=AIzaSyBN4_F3cBbadQ4x1PqZf6_OCktum1dmkJg&origin=" + SelectedInvestigator.City + "&destination=" + SelectedInvestigator.City + "&avoid=tolls\" width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\"></iframe></body></html>");
             }
         }
 

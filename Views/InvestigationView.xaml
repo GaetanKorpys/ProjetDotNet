@@ -183,27 +183,30 @@
             </StackPanel>
             <Button Style="{StaticResource BoutonTheme}" Command="{Binding ClearFieldsCommand}" Content="Nettoyer" Height="50" Width="150" Margin="5,5,5,5"/>
         </StackPanel>
-
-        <GroupBox Header=" Information Enquêteur " FontSize="16" Grid.Column="1" Margin="65,25,91,307">
-            <StackPanel Margin="15,0,0,0" HorizontalAlignment="Left" Height="57" VerticalAlignment="Center">
-                <StackPanel x:Name="MyStackPanel" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="392">
-                    <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Actuellement en charge de "/></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationInCharge}"/></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text=" enquête(s)."/></TextBlock>
+        <Grid Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36*"/>
+                <RowDefinition Height="139*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header=" Information Enquêteur " FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Height="86" Width="462" >
+                <StackPanel Margin="15,0,0,0" HorizontalAlignment="Left" Height="57" VerticalAlignment="Center">
+                    <StackPanel x:Name="MyStackPanel" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="392">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Actuellement en charge de "/></TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationInCharge}"/></TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text=" enquête(s)."/></TextBlock>
+                    </StackPanel>
+                    <StackPanel x:Name="MyStackPanel2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Height="30" Width="434">
+                        <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Nombre de visites effectués : "/></TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationNotInCharge}"/></TextBlock>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel x:Name="MyStackPanel2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Height="30" Width="434">
-                    <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Nombre de visites effectués : "/></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationNotInCharge}"/></TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </GroupBox>
-        <GroupBox Header=" Information Géographique" FontSize="16" Grid.Column="1" Margin="65,170,140,45" Grid.RowSpan="2">
-            <StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header=" Information Géographique" FontSize="16" Margin="30,50,30,50">
                 <cefSharp:ChromiumWebBrowser x:Name ="chromWebBrowser"
                     WebBrowser ="{Binding WebBrowser}" 
                     Address="{Binding WebBrowserAddress}"                                        
-                    IsBrowserInitializedChanged="browser_IsBrowserInitializedChanged" Height="430" Width="614"/>
-            </StackPanel>
-        </GroupBox>
+                    IsBrowserInitializedChanged="browser_IsBrowserInitializedChanged"/>
+            </GroupBox>
+        </Grid>
     </Grid>
 </UserControl>
