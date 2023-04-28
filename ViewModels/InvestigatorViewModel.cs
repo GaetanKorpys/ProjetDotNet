@@ -260,11 +260,12 @@ namespace ProjetDotNet.ViewModels
         {
             String message = "";
 
-            if (string.IsNullOrEmpty(Name))
+            
+            if (string.IsNullOrEmpty(LastName))
             {
                 message += "- Le nom de l'inspecteur est vide !\n";
             }
-            if (string.IsNullOrEmpty(LastName))
+            if (string.IsNullOrEmpty(Name))
             {
                 message += "- Le prénom de l'inspecteur est vide !\n";
             }

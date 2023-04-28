@@ -10,7 +10,7 @@
         <!-- Zone de création d'un nouveau suspect -->
         <GroupBox Header=" Information Visite " Margin="10,10,10,10" FontSize="16" DockPanel.Dock="Top">
             <StackPanel Margin="5,5,5,5">
-                <Grid Grid.IsSharedSizeScope="True" HorizontalAlignment="Center" Width="700">
+                <Grid Grid.IsSharedSizeScope="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -40,36 +40,54 @@
                 <Separator Margin="0,5,0,5"/>
 
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.IsSharedSizeScope="True">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
 
-                        <!-- Liste déroulante pour sélectionner une enquête -->
-                        <TextBlock Text="Sélectionnez un Enqueteur :" HorizontalAlignment="Center" />
-                        <ComboBox x:Name="cmbInvestigators"                         
-                          SelectedItem="{Binding SelectedInvestigator}"
-                          ItemsSource="{Binding Investigators}" Grid.Column="1">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{}{0} {1}">
-                                                <Binding Path="LastName"/>
-                                                <Binding Path="Name"/>
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </Grid>
-                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Sélectionnez un Enqueteur :" HorizontalAlignment="Center" />
+
+                    <ComboBox x:Name="cmbInvestigators"                   
+                            SelectedItem="{Binding SelectedInvestigator}"
+                            ItemsSource="{Binding Investigators}" Grid.Column="1">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="LastName"/>
+                                            <Binding Path="Name"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+
+                </Grid>
+
+                <Separator Margin="0,5,0,5"/>
+
+                <Grid Grid.IsSharedSizeScope="True" Margin="5,5,5,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Champs pour le numéro de téléphone -->
+                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" HorizontalAlignment="Center"><Run Text="Avis de passage"/></TextBlock>
+                    <CheckBox IsChecked="{Binding DeliveryNotice}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid Grid.IsSharedSizeScope="True" Margin="5,5,5,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Champs pour les commentaires -->
+                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" HorizontalAlignment="Center"><Run Text="Commentaires :"/><Run Text=" "/><Run Text="*" Foreground="Red"/></TextBlock>
+                    <TextBox Text="{Binding Comments}" Style="{StaticResource TextBoxTheme}" Tag="Commentaires..." TextWrapping="Wrap" DockPanel.Dock="Bottom" Grid.Column="1"/>
                 </Grid>
             </StackPanel>
         </GroupBox>

@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Diagnostics.Metrics;
+using System.IO;
 
 namespace ProjetDotNet.ViewModels
 {
@@ -117,6 +119,9 @@ namespace ProjetDotNet.ViewModels
                 
                 var investigations = context.Investigations.ToList();
                 Investigations = new ObservableCollection<Investigation>(investigations);
+
+                var investigators = context.Investigators.ToList();
+                Investigators = new ObservableCollection<Investigator>(investigators);
             }
         }
 
@@ -187,9 +192,11 @@ namespace ProjetDotNet.ViewModels
 
         private void AddVisit()
         {
-            if (!CanAddVisit())
+
+            String erreur = CanAddVisit();
+            if (erreur != "")
             {
-                MessageBox.Show("Veuillez remplir les champs nécéssaires.", "Erreur");
+                MessageBox.Show("Veuillez remplir les champs nécéssaires:\n" + erreur, "Erreur");
                 return;
             }
 
@@ -205,6 +212,7 @@ namespace ProjetDotNet.ViewModels
                         Comments = Comments,
                         DeliveryNotice = DeliveryNotice,
                         VisitDate = DateTime.Now.Date,
+                        InvestigationId = investigation.InvestigationId
                     };
 
                     visit.Investigators.Add(investigator);
@@ -221,12 +229,25 @@ namespace ProjetDotNet.ViewModels
             ClearVisitFields();
         }
 
-        private bool CanAddVisit()
+        private String CanAddVisit()
         {
-            return 
-                  !string.IsNullOrEmpty(Comments) &&
-                  SelectedInvestigator != null &&
-                  SelectedInvestigation != null;
+            String message = "";
+
+            if (SelectedInvestigation == null)
+            {
+                message += "- L'enquête n'est pas sélectionné !\n";
+            }
+            if (SelectedInvestigator == null)
+            {
+                message += "- L'enquêteur n'est pas sélectionné !\n";
+            }
+            if (string.IsNullOrEmpty(Comments))
+            {
+                message += "- Le commentaire est vide !\n";
+            }
+
+            return message;
+
         }
     }
 }

@@ -255,11 +255,12 @@ namespace ProjetDotNet.ViewModels
         {
             String message = "";
 
-            if (string.IsNullOrEmpty(Name))
+            
+            if (string.IsNullOrEmpty(LastName))
             {
                 message += "- Le nom du plaignant est vide !\n";
             }
-            if (string.IsNullOrEmpty(LastName))
+            if (string.IsNullOrEmpty(Name))
             {
                 message += "- Le prénom du plaignant est vide !\n";
             }
