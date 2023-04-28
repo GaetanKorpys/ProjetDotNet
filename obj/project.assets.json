@@ -4701,19 +4701,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Samvel\\.nuget\\packages\\": {}
+    "C:\\Users\\Gaetan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Samvel\\Source\\Repos\\ProjetDotNet\\ProjetDotNet.csproj",
+      "projectUniqueName": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
       "projectName": "ProjetDotNet",
-      "projectPath": "C:\\Users\\Samvel\\Source\\Repos\\ProjetDotNet\\ProjetDotNet.csproj",
-      "packagesPath": "C:\\Users\\Samvel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Samvel\\Source\\Repos\\ProjetDotNet\\obj\\",
+      "projectPath": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
+      "packagesPath": "C:\\Users\\Gaetan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Samvel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gaetan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4795,7 +4795,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

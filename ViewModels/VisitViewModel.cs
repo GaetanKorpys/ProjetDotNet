@@ -212,7 +212,7 @@ namespace ProjetDotNet.ViewModels
                         Comments = Comments,
                         DeliveryNotice = DeliveryNotice,
                         VisitDate = DateTime.Now.Date,
-                        InvestigationId = investigation.InvestigationId
+                        Investigation = investigation
                     };
 
                     visit.Investigators.Add(investigator);

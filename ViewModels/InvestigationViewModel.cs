@@ -246,7 +246,7 @@ namespace ProjetDotNet.ViewModels
                 {
 
                     NumberInvestigationInCharge = context.Investigations.Where(i =>i.Status == Status.En_cours && i.Investigator == SelectedInvestigator).Count();
-                    var tmp = context.Visits.Where(v => v.Investigators.Contains(SelectedInvestigator)).Count() - NumberInvestigationInCharge;
+                    var tmp = context.Visits.Where(v => v.Investigators.Contains(SelectedInvestigator)).Count();
                     if (tmp < 0)
                         NumberInvestigationNotInCharge = 0;
                     else
@@ -405,7 +405,12 @@ namespace ProjetDotNet.ViewModels
                         db.Complainants.Remove(complainant);
                     }
 
-                    
+                    var visits = db.Visits.Where(c => c.Investigation == investigationToDelete).ToList();
+                    foreach (var visit in visits)
+                    {
+                        db.Visits.Remove(visit);
+                    }
+
                     db.Investigations.Remove(investigationToDelete);
                     db.SaveChanges();
                     Investigations.Remove(SelectedInvestigation);
@@ -528,7 +533,8 @@ namespace ProjetDotNet.ViewModels
                   NumberAnimals != 0 &&
                   !string.IsNullOrEmpty(AnimalType) &&
                   SelectedSuspect != null &&
-                  SelectedComplainant != null;
+                  SelectedComplainant != null &&
+                  SelectedInvestigator != null;
         }
 
         private void FinishInvestigation()

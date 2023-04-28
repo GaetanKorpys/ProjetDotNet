@@ -97,7 +97,7 @@
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
                     <!-- Champs pour le sélectionner un enquêteur -->
-                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Sélectionnez un enquêteur :"/><Run Text=" "/></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Sélectionnez un enquêteur :"/><Run Text=" "/><Run Text="*" Foreground="Red"/></TextBlock>
                     <ComboBox x:Name="cmbInvestigators"                         
                             SelectedItem="{Binding SelectedInvestigator}"
                             ItemsSource="{Binding Investigators}" Grid.Column="5"
