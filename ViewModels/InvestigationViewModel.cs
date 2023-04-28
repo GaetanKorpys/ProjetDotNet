@@ -432,7 +432,10 @@ namespace ProjetDotNet.ViewModels
             using (var db = new ApplicationContext())
             {
                 var investigationToUpdate = db.Investigations.Find(SelectedInvestigation.InvestigationId);
-                db.Investigations.Attach(investigationToUpdate);
+                var investigator = db.Investigators.Find(SelectedInvestigator.InvestigatorId);
+                var suspect = db.Suspects.Find(SelectedSuspect.SuspectId);
+                var complainant = db.Complainants.Find(SelectedComplainant.ComplainantId);
+
 
                 if (investigationToUpdate != null)
                 {
@@ -440,16 +443,14 @@ namespace ProjetDotNet.ViewModels
                     investigationToUpdate.Reason = Reason;
                     investigationToUpdate.AnimalBreed = AnimalType;
                     investigationToUpdate.NumberOfAnimals = NumberAnimals;
-                    investigationToUpdate.Investigator = SelectedInvestigator;
-                    investigationToUpdate.Suspect = SelectedSuspect;
-                    investigationToUpdate.Complainant = SelectedComplainant;
+                    investigationToUpdate.Investigator = investigator;
+                    //investigationToUpdate.Suspect = suspect;
+                    //investigationToUpdate.Complainant = complainant;
 
                     db.SaveChanges();
                 }
                 ClearInvestigationFields();
 
-                var investigations = db.Investigations.ToList();
-                Investigations = new ObservableCollection<Investigation>(investigations);
             }
 
 
@@ -548,9 +549,6 @@ namespace ProjetDotNet.ViewModels
                     db.SaveChanges();
                 }
                 ClearInvestigationFields();
-
-                var investigations = db.Investigations.ToList();
-                Investigations = new ObservableCollection<Investigation>(investigations);
             }
         }
 
@@ -573,8 +571,6 @@ namespace ProjetDotNet.ViewModels
                 }
                 ClearInvestigationFields();
 
-                var investigations = db.Investigations.ToList();
-                Investigations = new ObservableCollection<Investigation>(investigations);
             }
         }
     }
