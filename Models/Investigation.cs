@@ -10,7 +10,7 @@ namespace ProjetDotNet.Models
 {
     public enum Status
     {
-        Classified, PlaintDeposit, InProgress, Pending
+        Classée, Dépot_Plainte, En_cours, En_attente
     }
 
     public class Investigation
@@ -18,7 +18,7 @@ namespace ProjetDotNet.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InvestigationId { get; set; }
 
-        public int InvestigatorId { get; set; }
+        public int? InvestigatorId { get; set; }
         public Investigator? Investigator { get; set; }
 
 

@@ -199,6 +199,13 @@ namespace ProjetDotNet.ViewModels
                 return;
             }
 
+            String erreur = CanAddInvestigator();
+            if (erreur != "")
+            {
+                MessageBox.Show("Veuillez remplir tous les champs:\n" + erreur, "Erreur");
+                return;
+            }
+
             using (var db = new ApplicationContext())
             {
                 var investigatorToUpdate = db.Investigators.Find(SelectedInvestigator.InvestigatorId);
@@ -240,6 +247,7 @@ namespace ProjetDotNet.ViewModels
                     Investigators.Remove(SelectedInvestigator);
                 }
             }
+            ClearInvestigatorFields();
         }
 
        /* private bool CanAddInvestigator()

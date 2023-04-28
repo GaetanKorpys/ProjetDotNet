@@ -143,7 +143,7 @@ namespace ProjetDotNet.ViewModels
             AddSuspectCommand = new RelayCommand(AddSuspect);
             UpdateSuspectCommand = new RelayCommand(UpdateSuspect);
             DeleteSuspectCommand = new RelayCommand(DeleteSuspect);
-            ClearFieldsCommand = new RelayCommand(ClearInvestigatorFields);
+            ClearFieldsCommand = new RelayCommand(ClearSuspectFields);
 
             using (var context = new ApplicationContext())
             {
@@ -183,7 +183,7 @@ namespace ProjetDotNet.ViewModels
                 // Add the new investigator to the list of investigators
                 Suspects.Add(suspect);
 
-                ClearInvestigatorFields();
+                ClearSuspectFields();
             }
         }
 
@@ -192,6 +192,13 @@ namespace ProjetDotNet.ViewModels
             if (SelectedSuspect == null)
             {
                 MessageBox.Show("Veuillez sélectionner un suspect à modifier.", "Erreur");
+                return;
+            }
+
+            String erreur = CanAddSuspect();
+            if (erreur != "")
+            {
+                MessageBox.Show("Veuillez remplir les champs nécéssaires:\n" + erreur, "Erreur");
                 return;
             }
 
@@ -213,7 +220,7 @@ namespace ProjetDotNet.ViewModels
 
                     db.SaveChanges();
                 }
-                ClearInvestigatorFields();
+                ClearSuspectFields();
             }
         }
 
@@ -236,6 +243,8 @@ namespace ProjetDotNet.ViewModels
                     Suspects.Remove(SelectedSuspect);
                 }
             }
+
+            ClearSuspectFields();
         }
 
         /*private bool CanAddSuspect()
@@ -272,7 +281,7 @@ namespace ProjetDotNet.ViewModels
             return message;
         }
 
-        private void ClearInvestigatorFields()
+        private void ClearSuspectFields()
         {
             SelectedSuspect = null;
             Name = string.Empty;

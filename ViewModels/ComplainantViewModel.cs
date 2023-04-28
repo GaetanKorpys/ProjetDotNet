@@ -143,7 +143,7 @@ namespace ProjetDotNet.ViewModels
             AddComplainantCommand = new RelayCommand(AddComplainant);
             UpdateComplainantCommand = new RelayCommand(UpdateComplainant);
             DeleteComplainantCommand = new RelayCommand(DeleteComplainant);
-            ClearFieldsCommand = new RelayCommand(ClearInvestigatorFields);
+            ClearFieldsCommand = new RelayCommand(ClearComplainantFields);
 
             using (var context = new ApplicationContext())
             {
@@ -154,7 +154,7 @@ namespace ProjetDotNet.ViewModels
 
         private void AddComplainant()
         {
-            String erreur = CanAddComplainant();
+            string erreur = CanAddComplainant();
             if (erreur != "")
             {
                 MessageBox.Show("Veuillez remplir tous les champs:\n" + erreur, "Erreur");
@@ -182,7 +182,7 @@ namespace ProjetDotNet.ViewModels
                 // Add the new investigator to the list of investigators
                 Complainants.Add(complainant);
 
-                ClearInvestigatorFields();
+                ClearComplainantFields();
             }
         }
 
@@ -194,9 +194,17 @@ namespace ProjetDotNet.ViewModels
                 return;
             }
 
+            string erreur = CanAddComplainant();
+            if (erreur != "")
+            {
+                MessageBox.Show("Veuillez remplir tous les champs:\n" + erreur, "Erreur");
+                return;
+            }
+
             using (var db = new ApplicationContext())
             {
                 var complainantToUpdate = db.Complainants.Find(SelectedComplainant.ComplainantId);
+
 
                 if (complainantToUpdate != null)
                 {
@@ -212,7 +220,7 @@ namespace ProjetDotNet.ViewModels
 
                     db.SaveChanges();
                 }
-                ClearInvestigatorFields();
+                ClearComplainantFields();
             }
         }
 
@@ -235,6 +243,7 @@ namespace ProjetDotNet.ViewModels
                     Complainants.Remove(complainantToDelete);
                 }
             }
+            ClearComplainantFields();
         }
 
         /*private bool CanAddComplainant()
@@ -251,9 +260,9 @@ namespace ProjetDotNet.ViewModels
                    !string.IsNullOrEmpty(Street);
         }*/
 
-        private String CanAddComplainant()
+        private string CanAddComplainant()
         {
-            String message = "";
+            string message = "";
 
             
             if (string.IsNullOrEmpty(LastName))
@@ -297,7 +306,7 @@ namespace ProjetDotNet.ViewModels
         }
 
 
-        private void ClearInvestigatorFields()
+        private void ClearComplainantFields()
         {
             SelectedComplainant = null;
             Name = string.Empty;
