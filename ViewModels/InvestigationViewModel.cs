@@ -103,6 +103,21 @@ namespace ProjetDotNet.ViewModels
             {
                 _selectedInvestigation = value;
                 OnPropertyChanged(nameof(SelectedInvestigation));
+                FillTextBox();
+            }
+        }
+
+        private void FillTextBox()
+        {
+            if (SelectedInvestigation != null)
+            {
+                Reason = SelectedInvestigation.Reason;
+                Comments = SelectedInvestigation.Comments;
+                AnimalType = SelectedInvestigation.AnimalBreed;
+                NumberAnimals = SelectedInvestigation.NumberOfAnimals;
+                SelectedInvestigator = SelectedInvestigation.Investigator;
+                SelectedSuspect = SelectedInvestigation.Suspect;
+                SelectedComplainant = SelectedInvestigation.Complainant;
             }
         }
 
