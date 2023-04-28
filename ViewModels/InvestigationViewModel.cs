@@ -35,6 +35,13 @@ namespace ProjetDotNet.ViewModels
         private string _animalType;
         private int _numberInvestigationInCharge;
         private int _numberInvestigationNotInCharge;
+        private Status _status;
+        private bool _readOnly;
+        private bool _enabledAddButton;
+        private bool _enabledUpdateButton;
+        private bool _enabledFinishButton;
+        private bool _enabledFileComplaintButton;
+        private Visibility _enabledStatus;
 
         public int NumberAnimals
         {
@@ -96,6 +103,77 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
+        public Status Status 
+        {
+            get { return _status; }
+            set
+            {
+               _status  = value;
+                OnPropertyChanged(nameof(Status));
+            }
+        }
+
+        public bool ReadOnly
+        {
+            get { return _readOnly; }
+            set
+            {
+                _readOnly = value;
+                OnPropertyChanged(nameof(ReadOnly));
+            }
+        }
+
+        public bool EnabledAddButton
+        {
+            get { return _enabledAddButton; }
+            set
+            {
+                _enabledAddButton = value;
+                OnPropertyChanged(nameof(EnabledAddButton));
+            }
+        }
+
+        public bool EnabledUpdateButton
+        {
+            get { return _enabledUpdateButton; }
+            set
+            {
+                _enabledUpdateButton = value;
+                OnPropertyChanged(nameof(EnabledUpdateButton));
+            }
+        }
+
+        public bool EnabledFinishButton
+        {
+            get { return _enabledFinishButton; }
+            set
+            {
+                _enabledFinishButton = value;
+                OnPropertyChanged(nameof(EnabledFinishButton));
+            }
+        }
+
+        public bool EnabledFileComplaintButton
+        {
+            get { return _enabledFileComplaintButton; }
+            set
+            {
+                _enabledFileComplaintButton = value;
+                OnPropertyChanged(nameof(EnabledFileComplaintButton));
+            }
+        }
+
+        public Visibility EnabledStatus
+        {
+            get { return _enabledStatus; }
+            set
+            {
+                _enabledStatus = value;
+                OnPropertyChanged(nameof(EnabledStatus));
+            }
+        }
+
+
         public Investigation SelectedInvestigation
         {
             get { return _selectedInvestigation; }
@@ -104,6 +182,40 @@ namespace ProjetDotNet.ViewModels
                 _selectedInvestigation = value;
                 OnPropertyChanged(nameof(SelectedInvestigation));
                 FillTextBox();
+
+
+                if (_selectedInvestigation != null)
+                {
+                    if (_selectedInvestigation.Status == Status.Classée || _selectedInvestigation.Status == Status.Dépot_Plainte)
+                    {
+                        ReadOnly = true;
+                        EnabledUpdateButton = false;
+                        EnabledFinishButton = false;
+                        EnabledFileComplaintButton = false;
+                    }
+
+                    else
+                    {
+                        ReadOnly = false;
+                        EnabledUpdateButton = true;
+                        EnabledFinishButton = true;
+                        EnabledFileComplaintButton = true;
+                    }
+
+                    EnabledAddButton = false;
+                    EnabledStatus = Visibility.Visible;
+
+                }
+                else
+                {
+                    ReadOnly = false;
+                    EnabledAddButton = true;
+                    EnabledStatus = Visibility.Hidden;
+                    EnabledUpdateButton = false;
+                    EnabledFinishButton = false;
+                    EnabledFileComplaintButton = false;
+                }
+
             }
         }
 
@@ -118,6 +230,7 @@ namespace ProjetDotNet.ViewModels
                 SelectedInvestigator = SelectedInvestigation.Investigator;
                 SelectedSuspect = SelectedInvestigation.Suspect;
                 SelectedComplainant = SelectedInvestigation.Complainant;
+                Status = SelectedInvestigation.Status;
             }
         }
 
@@ -132,7 +245,7 @@ namespace ProjetDotNet.ViewModels
                 using (var context = new ApplicationContext())
                 {
 
-                    NumberInvestigationInCharge = context.Investigations.Where(i =>i.Status == Status.InProgress && i.Investigator == SelectedInvestigator).Count();
+                    NumberInvestigationInCharge = context.Investigations.Where(i =>i.Status == Status.En_cours && i.Investigator == SelectedInvestigator).Count();
                     var tmp = context.Visits.Where(v => v.Investigators.Contains(SelectedInvestigator)).Count() - NumberInvestigationInCharge;
                     if (tmp < 0)
                         NumberInvestigationNotInCharge = 0;
@@ -211,6 +324,9 @@ namespace ProjetDotNet.ViewModels
         public ICommand UpdateInvestigationCommand { get; set; }
         public ICommand DeleteInvestigationCommand { get; set; }
         public ICommand ClearFieldsCommand { get; set; }
+        public ICommand FinishInvestigationCommand { get; set; }
+        public ICommand FileComplaintCommand { get; set; }
+        
 
         // Constructor
         public InvestigationViewModel()
@@ -219,6 +335,17 @@ namespace ProjetDotNet.ViewModels
             UpdateInvestigationCommand = new RelayCommand(UpdateInvestigation);
             DeleteInvestigationCommand = new RelayCommand(DeleteInvestigation);
             ClearFieldsCommand = new RelayCommand(ClearInvestigationFields);
+            FinishInvestigationCommand = new RelayCommand(FinishInvestigation);
+            FileComplaintCommand = new RelayCommand(FileComplaint);
+
+
+            //Config button at launch
+            ReadOnly = false;
+            EnabledAddButton = true;
+            EnabledStatus = Visibility.Hidden;
+            EnabledUpdateButton = false;
+            EnabledFinishButton = false;
+            EnabledFileComplaintButton = false;
 
             var settings = new CefSharp.WinForms.CefSettings();
             settings.CefCommandLineArgs.Add("disable-web-security");
@@ -241,14 +368,14 @@ namespace ProjetDotNet.ViewModels
 
         private void ClearInvestigationFields()
         {
+            SelectedInvestigation = null;
             SelectedInvestigator = null;
             SelectedComplainant = null;
             SelectedSuspect = null;
             Comments = string.Empty;
             Reason = string.Empty;
             AnimalType = string.Empty;
-            NumberAnimals = 0; 
-           
+            NumberAnimals = 0;
         }
 
         private void DeleteInvestigation()
@@ -265,24 +392,47 @@ namespace ProjetDotNet.ViewModels
 
                 if (investigationToDelete != null)
                 {
+
+                    var suspects = db.Suspects.Where(s => s.Investigation == investigationToDelete).ToList();
+                    foreach (var suspect in suspects)
+                    {
+                        db.Suspects.Remove(suspect);
+                    }
+
+                    var complainants = db.Complainants.Where(c => c.Investigation == investigationToDelete).ToList();
+                    foreach (var complainant in complainants)
+                    {
+                        db.Complainants.Remove(complainant);
+                    }
+
+                    
                     db.Investigations.Remove(investigationToDelete);
                     db.SaveChanges();
                     Investigations.Remove(SelectedInvestigation);
                 }
             }
+
+            ClearInvestigationFields();
         }
 
         private void UpdateInvestigation()
         {
             if (SelectedInvestigation == null)
             {
-                MessageBox.Show("Veuillez sélectionner une investigation à modifier.", "Erreur");
+                MessageBox.Show("Veuillez sélectionner une unquête à modifier.", "Erreur");
+                return;
+            }
+
+            if (!CanAddInvestigation())
+            {
+                MessageBox.Show("Veuillez remplir les champs nécéssaires.", "Erreur");
                 return;
             }
 
             using (var db = new ApplicationContext())
             {
                 var investigationToUpdate = db.Investigations.Find(SelectedInvestigation.InvestigationId);
+                db.Investigations.Attach(investigationToUpdate);
 
                 if (investigationToUpdate != null)
                 {
@@ -297,7 +447,12 @@ namespace ProjetDotNet.ViewModels
                     db.SaveChanges();
                 }
                 ClearInvestigationFields();
+
+                var investigations = db.Investigations.ToList();
+                Investigations = new ObservableCollection<Investigation>(investigations);
             }
+
+
         }
 
         private void AddInvestigation()
@@ -326,7 +481,7 @@ namespace ProjetDotNet.ViewModels
                         Suspect = suspect,
                         Complainant = complainant,
                         Investigator = investigator,
-                        Status = Status.InProgress
+                        Status = Status.En_cours
 
                     };
 
@@ -353,7 +508,7 @@ namespace ProjetDotNet.ViewModels
                         InvestigationStartDate = DateTime.Now.Date,
                         Suspect = SelectedSuspect,
                         Complainant = SelectedComplainant,
-                        Status = Status.Pending
+                        Status = Status.En_attente
 
                     };
                     db.Investigations.Add(investigation);
@@ -373,6 +528,54 @@ namespace ProjetDotNet.ViewModels
                   !string.IsNullOrEmpty(AnimalType) &&
                   SelectedSuspect != null &&
                   SelectedComplainant != null;
+        }
+
+        private void FinishInvestigation()
+        {
+            if (SelectedInvestigation == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une enquête.", "Erreur");
+                return;
+            }
+
+            using (var db = new ApplicationContext())
+            {
+                var investigationToFinish = db.Investigations.Find(SelectedInvestigation.InvestigationId);
+
+                if (investigationToFinish != null)
+                {
+                    investigationToFinish.Status = Status.Classée;
+                    db.SaveChanges();
+                }
+                ClearInvestigationFields();
+
+                var investigations = db.Investigations.ToList();
+                Investigations = new ObservableCollection<Investigation>(investigations);
+            }
+        }
+
+        private void FileComplaint()
+        {
+            if (SelectedInvestigation == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une enquête avant de déposer une plainte.", "Erreur");
+                return;
+            }
+
+            using (var db = new ApplicationContext())
+            {
+                var investigationToFinish = db.Investigations.Find(SelectedInvestigation.InvestigationId);
+
+                if (investigationToFinish != null)
+                {
+                    investigationToFinish.Status = Status.Dépot_Plainte;
+                    db.SaveChanges();
+                }
+                ClearInvestigationFields();
+
+                var investigations = db.Investigations.ToList();
+                Investigations = new ObservableCollection<Investigation>(investigations);
+            }
         }
     }
 }
