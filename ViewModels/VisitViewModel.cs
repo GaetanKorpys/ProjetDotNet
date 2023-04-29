@@ -64,8 +64,10 @@ namespace ProjetDotNet.ViewModels
             {
                 _selectedVisit = value;
                 OnPropertyChanged(nameof(SelectedVisit));
+                FillTextBox();
             }
         }
+
         public Investigation SelectedInvestigation
         {
             get { return _selectedInvestigation; }
@@ -107,7 +109,10 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        public ObservableCollection<ProofPicture> Pictures { get; set; }
+        public ObservableCollection<Image> Images { get; set; }
+
+        private List<ProofPicture> _pictures { get; set; }
+
         public ObservableCollection<Visit> Visits { get; set; }
         public ObservableCollection<Investigation> Investigations { get; set; }
         public ObservableCollection<Investigator> Investigators { get; set; }
@@ -130,8 +135,11 @@ namespace ProjetDotNet.ViewModels
             var settings = new CefSharp.WinForms.CefSettings();
             settings.CefCommandLineArgs.Add("disable-web-security");
 
+
+
+            Images = new ObservableCollection<Image>();
             Visits = new ObservableCollection<Visit>();
-            Pictures = new ObservableCollection<ProofPicture>();
+            _pictures = new List<ProofPicture>();
 
             using (var context = new ApplicationContext())
             {
@@ -157,6 +165,24 @@ namespace ProjetDotNet.ViewModels
                     // Charger l'image depuis le fichier sélectionné
                     var pictureBytes = await File.ReadAllBytesAsync(filename);
 
+                    BitmapImage image = new BitmapImage(new Uri(filename));
+                    MemoryStream ms = new MemoryStream();
+                    PngBitmapEncoder encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(image));
+                    encoder.Save(ms);
+                    byte[] buffer = ms.ToArray();
+                    string base64String = Convert.ToBase64String(buffer);
+                    Image imageControl = new Image();
+                    imageControl.Width = 200;
+                    imageControl.Height = 200;
+                    imageControl.Margin = new Thickness(5);
+                    imageControl.Source = image;
+                    imageControl.Tag = base64String;
+                    //ProofPicture newPicture = new ProofPicture { Picture = buffer };
+
+
+                    Images.Add(imageControl);
+
 
                     using (var db = new ApplicationContext())
                     {
@@ -171,29 +197,9 @@ namespace ProjetDotNet.ViewModels
                         db.SaveChanges();
 
                         // Add the new investigator to the list of investigators
-                        Pictures.Add(picture);
+                        _pictures.Add(picture);
+                        
                     }
-
-                    /*foreach (string filename in openFileDialog.FileNames)
-                    {
-                        BitmapImage image = new BitmapImage(new Uri(filename));
-                        MemoryStream ms = new MemoryStream();
-                        PngBitmapEncoder encoder = new PngBitmapEncoder();
-                        encoder.Frames.Add(BitmapFrame.Create(image));
-                        encoder.Save(ms);
-                        byte[] buffer = ms.ToArray();
-                        string base64String = Convert.ToBase64String(buffer);
-                        Image imageControl = new Image();
-                        imageControl.Width = 200;
-                        imageControl.Height = 200;
-                        imageControl.Margin = new Thickness(5);
-                        imageControl.Source = image;
-                        imageControl.Tag = base64String;
-                        ProofPicture newPicture = new ProofPicture { Picture = buffer };
-
-                        newPicture.Add(newPicture);
-
-                    }*/
                 }
                 
                 
@@ -207,6 +213,8 @@ namespace ProjetDotNet.ViewModels
             SelectedInvestigator = null;
             Comments = string.Empty;
             DeliveryNotice = false;
+            Images.Clear();
+            _pictures.Clear();
         }
 
         private void DeleteVisit()
@@ -292,13 +300,16 @@ namespace ProjetDotNet.ViewModels
 
                     visit.Investigators.Add(investigator);
 
-                    foreach(ProofPicture p in Pictures)
+                    foreach(ProofPicture p in _pictures)
                     {
                         var picture = db.ProofPictures.Find(p);
                         visit.ProofPictures.Add(picture);
                     }
 
-                    
+                    _pictures.Clear();
+
+
+
                     db.Visits.Add(visit);
                     db.SaveChanges();
 
@@ -328,6 +339,37 @@ namespace ProjetDotNet.ViewModels
 
             return message;
 
+        }
+
+        private string ConvertImageToBase64(BitmapImage image)
+        {
+            MemoryStream ms = new MemoryStream();
+            PngBitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image));
+            encoder.Save(ms);
+            byte[] buffer = ms.ToArray();
+            return Convert.ToBase64String(buffer);
+        }
+
+        private void FillTextBox()
+        {
+            if (SelectedVisit != null)
+            {
+                Comments = SelectedVisit.Comments;
+                DeliveryNotice = SelectedVisit.DeliveryNotice;
+                foreach (ProofPicture p in SelectedVisit.ProofPictures)
+                {
+                    Images.Add(ConvertArrayByteToImage(p.Picture));
+                }
+            }
+        }
+
+        private Image ConvertArrayByteToImage(byte[] picture)
+        {
+
+            //Entrée = Tableau de Byte
+            //Sortie = new Image
+            throw new NotImplementedException();
         }
     }
 }

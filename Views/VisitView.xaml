@@ -149,5 +149,12 @@
             </StackPanel>
             <Button Style="{StaticResource BoutonTheme}" Command="{Binding ClearFieldsCommand}" Content="Nettoyer" Height="50" Width="150" Margin="5,5,5,5"/>
         </StackPanel>
+        <ListView Width="286" ItemsSource="{Binding Images}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </DockPanel>
 </UserControl>
