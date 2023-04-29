@@ -42,6 +42,7 @@ namespace ProjetDotNet.ViewModels
         private bool _enabledFinishButton;
         private bool _enabledFileComplaintButton;
         private Visibility _enabledStatus;
+        private DateTime _endDate;
 
         public int NumberAnimals
         {
@@ -173,6 +174,16 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
+        public DateTime EndDate
+        {
+            get { return _endDate; }
+            set
+            {
+                _endDate = value;
+                OnPropertyChanged(nameof(EndDate));
+            }
+        }
+
 
         public Investigation SelectedInvestigation
         {
@@ -192,6 +203,7 @@ namespace ProjetDotNet.ViewModels
                         EnabledUpdateButton = false;
                         EnabledFinishButton = false;
                         EnabledFileComplaintButton = false;
+                        EndDate = (DateTime)_selectedInvestigation.InvestigationEndDate;
                     }
 
                     else
@@ -200,6 +212,7 @@ namespace ProjetDotNet.ViewModels
                         EnabledUpdateButton = true;
                         EnabledFinishButton = true;
                         EnabledFileComplaintButton = true;
+                        EndDate = (DateTime)_selectedInvestigation.InvestigationStartDate;
                     }
 
                     EnabledAddButton = false;

@@ -33,14 +33,5 @@ namespace ProjetDotNet.Models
 
     }
 
-    public class ProofPicture
-    {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProofPictureId { get; set; }
-
-        public byte[] Picture { get; set; }
-
-        public int VisitId { get; set; }
-        public Visit Visit { get; set; }
-    }
+   
 }
