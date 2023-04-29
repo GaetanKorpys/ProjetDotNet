@@ -46,33 +46,33 @@
           }
         }
       },
-      "cef.redist.x64/112.2.7": {
+      "cef.redist.x64/112.3.0": {
         "type": "package",
         "build": {
           "buildTransitive/cef.redist.x64.props": {}
         }
       },
-      "cef.redist.x86/112.2.7": {
+      "cef.redist.x86/112.3.0": {
         "type": "package",
         "build": {
           "buildTransitive/cef.redist.x86.props": {}
         }
       },
-      "CefSharp.Common/112.2.70": {
+      "CefSharp.Common/112.3.0": {
         "type": "package",
         "dependencies": {
-          "cef.redist.x64": "[112.2.7]",
-          "cef.redist.x86": "[112.2.7]"
+          "cef.redist.x64": "[112.3.0]",
+          "cef.redist.x86": "[112.3.0]"
         },
         "build": {
           "buildTransitive/CefSharp.Common.props": {},
           "buildTransitive/CefSharp.Common.targets": {}
         }
       },
-      "CefSharp.Common.NETCore/112.2.70": {
+      "CefSharp.Common.NETCore/112.3.0": {
         "type": "package",
         "dependencies": {
-          "chromiumembeddedframework.runtime": "[112.2.7]"
+          "chromiumembeddedframework.runtime": "[112.3.0]"
         },
         "compile": {
           "ref/netcoreapp3.1/CefSharp.Core.Runtime.dll": {},
@@ -181,10 +181,10 @@
           }
         }
       },
-      "CefSharp.WinForms.NETCore/112.2.70": {
+      "CefSharp.WinForms.NETCore/112.3.0": {
         "type": "package",
         "dependencies": {
-          "CefSharp.Common.NETCore": "[112.2.70]"
+          "CefSharp.Common.NETCore": "[112.3.0]"
         },
         "compile": {
           "ref/netcoreapp3.1/CefSharp.WinForms.dll": {}
@@ -195,10 +195,10 @@
           }
         }
       },
-      "CefSharp.Wpf.NETCore/112.2.70": {
+      "CefSharp.Wpf.NETCore/112.3.0": {
         "type": "package",
         "dependencies": {
-          "CefSharp.Common.NETCore": "[112.2.70]"
+          "CefSharp.Common.NETCore": "[112.3.0]"
         },
         "compile": {
           "ref/netcoreapp3.1/CefSharp.Wpf.dll": {}
@@ -209,7 +209,7 @@
           }
         }
       },
-      "chromiumembeddedframework.runtime/112.2.7": {
+      "chromiumembeddedframework.runtime/112.3.0": {
         "type": "package",
         "build": {
           "buildTransitive/chromiumembeddedframework.runtime.props": {}
@@ -1452,10 +1452,10 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
-    "cef.redist.x64/112.2.7": {
-      "sha512": "nm0No80eihhzSrDCSPOKhgZXnvGtus4xsNj/7NGFx20JLNKYd1wQcn4En7cBiW6BZFPN6Sojxzo2qj1bOiI6VQ==",
+    "cef.redist.x64/112.3.0": {
+      "sha512": "NXYV+S6rybP8Qqzx5kElVnPtTqg6KJQfJ6lv2bytxlx4mUHt2Yo85283SIR0XdV/UlLLQvpiEtmKt8dvZZ2bRA==",
       "type": "package",
-      "path": "cef.redist.x64/112.2.7",
+      "path": "cef.redist.x64/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1533,14 +1533,14 @@
         "LICENSE.txt",
         "build/cef.redist.x64.props",
         "buildTransitive/cef.redist.x64.props",
-        "cef.redist.x64.112.2.7.nupkg.sha512",
+        "cef.redist.x64.112.3.0.nupkg.sha512",
         "cef.redist.x64.nuspec"
       ]
     },
-    "cef.redist.x86/112.2.7": {
-      "sha512": "C5kAugJ65bc9+F4nNQ1Vhg6FhSThYxdjWItjiMAryF19RcehgMSFjV2NPPClY1r3I6r/Z3Yp4H9vARelFNahcQ==",
+    "cef.redist.x86/112.3.0": {
+      "sha512": "ePVM/iQ3PkeqtSpab6wCmxYsBKGA3C3h1E8HDQNRid7l2J0Q22jjUx0PNKtB7ZgZkC0Z4JVsvDo91gJZ1hUemw==",
       "type": "package",
-      "path": "cef.redist.x86/112.2.7",
+      "path": "cef.redist.x86/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1618,14 +1618,14 @@
         "LICENSE.txt",
         "build/cef.redist.x86.props",
         "buildTransitive/cef.redist.x86.props",
-        "cef.redist.x86.112.2.7.nupkg.sha512",
+        "cef.redist.x86.112.3.0.nupkg.sha512",
         "cef.redist.x86.nuspec"
       ]
     },
-    "CefSharp.Common/112.2.70": {
-      "sha512": "7/90RpdgTmKTCJL4IT3xGwMqYLxWEhadp2Tehb3SHuZ8M3xE9XVOrMmOGEMLt+S5jSKpksd0JnhQCmYzzxffjg==",
+    "CefSharp.Common/112.3.0": {
+      "sha512": "WCfM83iSxOSNnFgeV/3LOfCo79ld+84quy2k3DElQVp/BikvTQ04aypeqIl7IsEsLkoMVMd7xW4Pj2GqdRiOWQ==",
       "type": "package",
-      "path": "cefsharp.common/112.2.70",
+      "path": "cefsharp.common/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1649,7 +1649,7 @@
         "build/app.config.x86.transform",
         "buildTransitive/CefSharp.Common.props",
         "buildTransitive/CefSharp.Common.targets",
-        "cefsharp.common.112.2.70.nupkg.sha512",
+        "cefsharp.common.112.3.0.nupkg.sha512",
         "cefsharp.common.nuspec",
         "lib/net452/CefSharp.Core.XML",
         "lib/net452/CefSharp.Core.dll",
@@ -2182,16 +2182,16 @@
         "src/CefSharp/obj/Release/.NETFramework,Version=v4.5.2.AssemblyAttributes.cs"
       ]
     },
-    "CefSharp.Common.NETCore/112.2.70": {
-      "sha512": "lJfM73Z/kEueM633eyacXELZvX+jbsFn9wc9EKfswk7vgHJ7qSN81A5z1YgmE/LXewVm4JNAvB56bPI+qqVpfQ==",
+    "CefSharp.Common.NETCore/112.3.0": {
+      "sha512": "Z17BDwBKjHQP3LNl31ZTfi7zag0cXInLJ1g85V4urMkrc/tq9xQmDZBb2+6WO06YM0g5oSgVeATJL/4MWQsZbQ==",
       "type": "package",
-      "path": "cefsharp.common.netcore/112.2.70",
+      "path": "cefsharp.common.netcore/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "buildTransitive/CefSharp.Common.NETCore.targets",
-        "cefsharp.common.netcore.112.2.70.nupkg.sha512",
+        "cefsharp.common.netcore.112.3.0.nupkg.sha512",
         "cefsharp.common.netcore.nuspec",
         "ref/netcoreapp3.1/CefSharp.Core.Runtime.dll",
         "ref/netcoreapp3.1/CefSharp.Core.dll",
@@ -2234,42 +2234,42 @@
         "runtimes/win-x86/native/CefSharp.BrowserSubprocess.runtimeconfig.json"
       ]
     },
-    "CefSharp.WinForms.NETCore/112.2.70": {
-      "sha512": "xyZn292xigi7kZtp3D2zYCQex9vmKBuCuD/ij2YKTmXUxF6Uf75LWL8KBf7t/ndl2Q0sUMu/ntSuwrXqpx8+CA==",
+    "CefSharp.WinForms.NETCore/112.3.0": {
+      "sha512": "7j6m57Rduyf873+UUEm9rotGCnMB6QwjX/Wx6AZCBQpSEUdLwvkiUGYvXA7r3dU41AIx5V+7JOra0dpOo0+WjA==",
       "type": "package",
-      "path": "cefsharp.winforms.netcore/112.2.70",
+      "path": "cefsharp.winforms.netcore/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "Readme.txt",
-        "cefsharp.winforms.netcore.112.2.70.nupkg.sha512",
+        "cefsharp.winforms.netcore.112.3.0.nupkg.sha512",
         "cefsharp.winforms.netcore.nuspec",
         "lib/netcoreapp3.1/CefSharp.WinForms.dll",
         "lib/netcoreapp3.1/CefSharp.WinForms.xml",
         "ref/netcoreapp3.1/CefSharp.WinForms.dll"
       ]
     },
-    "CefSharp.Wpf.NETCore/112.2.70": {
-      "sha512": "L2BqC6sOGaB9GCrRUxgSIy2kAkbX7zYeuATAO8Y41P8IUuDa5nTk5s8A3zrf7L7XTrksjRhkgP+7ItCvBzQ4Xg==",
+    "CefSharp.Wpf.NETCore/112.3.0": {
+      "sha512": "nm/kEjOs+P2E4684SUE0UMVzr1gS3WFJLCxUuMPbcrVY5hY0K7j0kT/7fJDYtTR6tkTldDiGyIFvRhajeA9Qgw==",
       "type": "package",
-      "path": "cefsharp.wpf.netcore/112.2.70",
+      "path": "cefsharp.wpf.netcore/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "Readme.txt",
-        "cefsharp.wpf.netcore.112.2.70.nupkg.sha512",
+        "cefsharp.wpf.netcore.112.3.0.nupkg.sha512",
         "cefsharp.wpf.netcore.nuspec",
         "lib/netcoreapp3.1/CefSharp.Wpf.dll",
         "lib/netcoreapp3.1/CefSharp.Wpf.xml",
         "ref/netcoreapp3.1/CefSharp.Wpf.dll"
       ]
     },
-    "chromiumembeddedframework.runtime/112.2.7": {
-      "sha512": "jPgNp0oWb2txIUiPdSeIk6YC3tMXjCbWMtvdrS3+V8T5Zv/hFeiayrGACeVJBLSUtFmAyayqop9FWBT7jHVkcw==",
+    "chromiumembeddedframework.runtime/112.3.0": {
+      "sha512": "UuHRjro4OV5Iodl1XpY3eRbOgg5h0fUkrdUiMHScR55RD/qSRbhI+ZkKOTGReaZ/ffv/OzwU1bvSwPVeyvJgOw==",
       "type": "package",
-      "path": "chromiumembeddedframework.runtime/112.2.7",
+      "path": "chromiumembeddedframework.runtime/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2440,7 +2440,7 @@
         "CEF/win-x86/locales/zh-TW.pak",
         "LICENSE.txt",
         "buildTransitive/chromiumembeddedframework.runtime.props",
-        "chromiumembeddedframework.runtime.112.2.7.nupkg.sha512",
+        "chromiumembeddedframework.runtime.112.3.0.nupkg.sha512",
         "chromiumembeddedframework.runtime.nuspec",
         "images/cef128x128.png",
         "runtime.json"
@@ -4691,9 +4691,9 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "CefSharp.Common >= 112.2.70",
-      "CefSharp.WinForms.NETCore >= 112.2.70",
-      "CefSharp.Wpf.NETCore >= 112.2.70",
+      "CefSharp.Common >= 112.3.0",
+      "CefSharp.WinForms.NETCore >= 112.3.0",
+      "CefSharp.Wpf.NETCore >= 112.3.0",
       "CommunityToolkit.Mvvm >= 8.2.0",
       "Microsoft.EntityFrameworkCore >= 7.0.5",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.5",
@@ -4743,15 +4743,15 @@
         "dependencies": {
           "CefSharp.Common": {
             "target": "Package",
-            "version": "[112.2.70, )"
+            "version": "[112.3.0, )"
           },
           "CefSharp.WinForms.NETCore": {
             "target": "Package",
-            "version": "[112.2.70, )"
+            "version": "[112.3.0, )"
           },
           "CefSharp.Wpf.NETCore": {
             "target": "Package",
-            "version": "[112.2.70, )"
+            "version": "[112.3.0, )"
           },
           "CommunityToolkit.Mvvm": {
             "target": "Package",

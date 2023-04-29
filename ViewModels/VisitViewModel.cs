@@ -25,7 +25,7 @@ namespace ProjetDotNet.ViewModels
         private string _comments;
         private bool _deliveryNotice;
         private bool _isMainInvestigator;
-        private List<ProofPicture> _proofPicture;
+        private ProofPicture _proofPicture;
 
         public string Comments
         {
@@ -97,7 +97,7 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        public List<ProofPicture> SelectProofPicture
+        public ProofPicture SelectProofPicture
         {
             get { return _proofPicture; }
             set
@@ -107,7 +107,7 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
-        public ObservableCollection<Visit> ProofPictures { get; set; }
+        public ObservableCollection<ProofPicture> Pictures { get; set; }
         public ObservableCollection<Visit> Visits { get; set; }
         public ObservableCollection<Investigation> Investigations { get; set; }
         public ObservableCollection<Investigator> Investigators { get; set; }
@@ -131,6 +131,7 @@ namespace ProjetDotNet.ViewModels
             settings.CefCommandLineArgs.Add("disable-web-security");
 
             Visits = new ObservableCollection<Visit>();
+            Pictures = new ObservableCollection<ProofPicture>();
 
             using (var context = new ApplicationContext())
             {
@@ -156,15 +157,22 @@ namespace ProjetDotNet.ViewModels
                     // Charger l'image depuis le fichier sélectionné
                     var pictureBytes = await File.ReadAllBytesAsync(filename);
 
-                    // Ajouter l'image à la visite
-                    var proofPicture = new ProofPicture
-                    {
-                        Picture = pictureBytes
-                    };
-                    SelectProofPicture.Add(proofPicture);
 
-                    // Rafraîchir l'affichage des preuves photographiques
-                    OnPropertyChanged(nameof(SelectProofPicture));
+                    using (var db = new ApplicationContext())
+                    {
+
+
+                        var picture = new ProofPicture()
+                        {
+                            Picture = pictureBytes
+                        };
+
+                        db.ProofPictures.Add(picture);
+                        db.SaveChanges();
+
+                        // Add the new investigator to the list of investigators
+                        Pictures.Add(picture);
+                    }
 
                     /*foreach (string filename in openFileDialog.FileNames)
                     {
@@ -283,7 +291,14 @@ namespace ProjetDotNet.ViewModels
                     };
 
                     visit.Investigators.Add(investigator);
-                    visit.ProofPictures = SelectProofPicture;
+
+                    foreach(ProofPicture p in Pictures)
+                    {
+                        var picture = db.ProofPictures.Find(p);
+                        visit.ProofPictures.Add(picture);
+                    }
+
+                    
                     db.Visits.Add(visit);
                     db.SaveChanges();
 

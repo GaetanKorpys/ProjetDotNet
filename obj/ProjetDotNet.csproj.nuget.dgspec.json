@@ -42,15 +42,15 @@
           "dependencies": {
             "CefSharp.Common": {
               "target": "Package",
-              "version": "[112.2.70, )"
+              "version": "[112.3.0, )"
             },
             "CefSharp.WinForms.NETCore": {
               "target": "Package",
-              "version": "[112.2.70, )"
+              "version": "[112.3.0, )"
             },
             "CefSharp.Wpf.NETCore": {
               "target": "Package",
-              "version": "[112.2.70, )"
+              "version": "[112.3.0, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",

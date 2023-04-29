@@ -126,7 +126,7 @@
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
                     <Button Content="Choisir une image" Command="{Binding AddProofPictureCommand}" Height="25"/>
-                    <ItemsControl ItemsSource="{Binding SelectProofPicture}" Grid.Column="0">
+                    <ItemsControl ItemsSource="{Binding Pictures}" Grid.Column="0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel/>
