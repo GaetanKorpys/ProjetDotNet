@@ -86,6 +86,7 @@
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0} {1}">
                                             <Binding Path="VisitDate" Converter="{StaticResource DateConverter}"/>
+                                            <Binding Path="VisitId"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>

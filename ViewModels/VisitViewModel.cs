@@ -71,9 +71,12 @@ namespace ProjetDotNet.ViewModels
 
                 using (var context = new ApplicationContext())
                 {
-
+                    Visits.Clear();
                     var visits = context.Visits.Where(v => v.Investigation == _selectedInvestigation).ToList();
-                    Visits = new ObservableCollection<Visit>(visits);
+                    foreach (Visit v in visits)
+                    {
+                        Visits.Add(v);
+                    }
                 }
 
                 OnPropertyChanged(nameof(SelectedInvestigation));
@@ -112,7 +115,6 @@ namespace ProjetDotNet.ViewModels
             settings.CefCommandLineArgs.Add("disable-web-security");
 
             Visits = new ObservableCollection<Visit>();
-            Investigators = new ObservableCollection<Investigator>();
 
             using (var context = new ApplicationContext())
             {
@@ -218,9 +220,6 @@ namespace ProjetDotNet.ViewModels
                     visit.Investigators.Add(investigator);
                     db.Visits.Add(visit);
                     db.SaveChanges();
-
-                    // Add the new investigator to the list of investigators
-                    Visits.Add(visit);
 
                     investigation.Visits.Add(visit);
                 }
