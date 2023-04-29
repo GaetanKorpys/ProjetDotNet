@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows;
 using System.Diagnostics.Metrics;
 using System.IO;
+using Microsoft.Win32;
+using System.Windows.Media.Imaging;
+using System.Windows.Controls;
 
 namespace ProjetDotNet.ViewModels
 {
@@ -22,6 +25,7 @@ namespace ProjetDotNet.ViewModels
         private string _comments;
         private bool _deliveryNotice;
         private bool _isMainInvestigator;
+        private List<ProofPicture> _proofPicture;
 
         public string Comments
         {
@@ -93,11 +97,22 @@ namespace ProjetDotNet.ViewModels
             }
         }
 
+        public List<ProofPicture> SelectProofPicture
+        {
+            get { return _proofPicture; }
+            set
+            {
+                _proofPicture = value;
+                OnPropertyChanged(nameof(SelectProofPicture));
+            }
+        }
+
+        public ObservableCollection<Visit> ProofPictures { get; set; }
         public ObservableCollection<Visit> Visits { get; set; }
         public ObservableCollection<Investigation> Investigations { get; set; }
         public ObservableCollection<Investigator> Investigators { get; set; }
 
-
+        public ICommand AddProofPictureCommand { get; set; }
         public ICommand AddVisitCommand { get; set; }
         public ICommand UpdateVisitCommand { get; set; }
         public ICommand DeleteVisitCommand { get; set; }
@@ -106,6 +121,7 @@ namespace ProjetDotNet.ViewModels
         // Constructor
         public VisitViewModel()
         {
+            AddProofPictureCommand = new RelayCommand(AddProofPicture);
             AddVisitCommand = new RelayCommand(AddVisit);
             UpdateVisitCommand = new RelayCommand(UpdateVisit);
             DeleteVisitCommand = new RelayCommand(DeleteVisit);
@@ -124,6 +140,55 @@ namespace ProjetDotNet.ViewModels
 
                 var investigators = context.Investigators.ToList();
                 Investigators = new ObservableCollection<Investigator>(investigators);
+
+            }
+        }
+
+        private async void AddProofPicture()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Image Files(*.jpg;*.jpeg;*.bmp;*.png)|*.jpg;*.jpeg;.bmp;*.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    // Charger l'image depuis le fichier sélectionné
+                    var pictureBytes = await File.ReadAllBytesAsync(filename);
+
+                    // Ajouter l'image à la visite
+                    var proofPicture = new ProofPicture
+                    {
+                        Picture = pictureBytes
+                    };
+                    SelectProofPicture.Add(proofPicture);
+
+                    // Rafraîchir l'affichage des preuves photographiques
+                    OnPropertyChanged(nameof(SelectProofPicture));
+
+                    /*foreach (string filename in openFileDialog.FileNames)
+                    {
+                        BitmapImage image = new BitmapImage(new Uri(filename));
+                        MemoryStream ms = new MemoryStream();
+                        PngBitmapEncoder encoder = new PngBitmapEncoder();
+                        encoder.Frames.Add(BitmapFrame.Create(image));
+                        encoder.Save(ms);
+                        byte[] buffer = ms.ToArray();
+                        string base64String = Convert.ToBase64String(buffer);
+                        Image imageControl = new Image();
+                        imageControl.Width = 200;
+                        imageControl.Height = 200;
+                        imageControl.Margin = new Thickness(5);
+                        imageControl.Source = image;
+                        imageControl.Tag = base64String;
+                        ProofPicture newPicture = new ProofPicture { Picture = buffer };
+
+                        newPicture.Add(newPicture);
+
+                    }*/
+                }
+                
+                
             }
         }
 
@@ -218,6 +283,7 @@ namespace ProjetDotNet.ViewModels
                     };
 
                     visit.Investigators.Add(investigator);
+                    visit.ProofPictures = SelectProofPicture;
                     db.Visits.Add(visit);
                     db.SaveChanges();
 

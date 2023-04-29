@@ -125,8 +125,19 @@
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Choisir une image" Click="AddImage" Height="25"/>
-                    <WrapPanel x:Name="imagePanel" Margin="10" Grid.Column="1" VerticalAlignment="Top"/>
+                    <Button Content="Choisir une image" Command="{Binding AddProofPictureCommand}" Height="25"/>
+                    <ItemsControl ItemsSource="{Binding SelectProofPicture}" Grid.Column="0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ProofPicture}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </StackPanel>
         </GroupBox>

@@ -77,7 +77,7 @@ namespace ProjetDotNet.Views
             return grid;
         }
 
-        private void AddImage(object sender, RoutedEventArgs e)
+        /*private void AddImage(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
@@ -88,9 +88,6 @@ namespace ProjetDotNet.Views
                 {
                     BitmapImage image = new BitmapImage(new Uri(filename));
                     string base64String = ConvertImageToBase64(image);
-                    Console.WriteLine(base64String.ToString());
-                    Trace.WriteLine(base64String.ToString());
-                    Console.WriteLine("sdrgsrgrs");
                     Image imageControl = new Image();
                     imageControl.Width = 200;
                     imageControl.Height = 200;
@@ -110,6 +107,6 @@ namespace ProjetDotNet.Views
             encoder.Save(ms);
             byte[] buffer = ms.ToArray();
             return Convert.ToBase64String(buffer);
-        }
+        }*/
     }
 }
