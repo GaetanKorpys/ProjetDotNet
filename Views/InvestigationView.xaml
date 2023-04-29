@@ -212,10 +212,7 @@
                         <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationInCharge}"/></TextBlock>
                         <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text=" enquête(s)."/></TextBlock>
                     </StackPanel>
-                    <StackPanel x:Name="MyStackPanel2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Height="30" Width="434">
-                        <TextBlock Style="{StaticResource TextBlockTheme}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"><Run Text="Nombre de visites effectués : "/></TextBlock>
-                        <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationNotInCharge}"/></TextBlock>
-                    </StackPanel>
+                    
                 </StackPanel>
             </GroupBox>
             <GroupBox Grid.Row="1" Header=" Information Géographique" FontSize="16" Margin="30,50,30,50">

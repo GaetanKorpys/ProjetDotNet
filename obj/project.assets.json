@@ -215,7 +215,7 @@
           "buildTransitive/chromiumembeddedframework.runtime.props": {}
         }
       },
-      "chromiumembeddedframework.runtime.win-arm64/112.2.7": {
+      "chromiumembeddedframework.runtime.win-arm64/112.3.0": {
         "type": "package",
         "runtimeTargets": {
           "runtimes/win-arm64/native/chrome_100_percent.pak": {
@@ -272,7 +272,7 @@
           }
         }
       },
-      "chromiumembeddedframework.runtime.win-x64/112.2.7": {
+      "chromiumembeddedframework.runtime.win-x64/112.3.0": {
         "type": "package",
         "runtimeTargets": {
           "runtimes/win-x64/native/chrome_100_percent.pak": {
@@ -333,7 +333,7 @@
           }
         }
       },
-      "chromiumembeddedframework.runtime.win-x86/112.2.7": {
+      "chromiumembeddedframework.runtime.win-x86/112.3.0": {
         "type": "package",
         "runtimeTargets": {
           "runtimes/win-x86/native/chrome_100_percent.pak": {
@@ -394,7 +394,7 @@
           }
         }
       },
-      "CommunityToolkit.Mvvm/8.1.0": {
+      "CommunityToolkit.Mvvm/8.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/CommunityToolkit.Mvvm.dll": {
@@ -2446,16 +2446,16 @@
         "runtime.json"
       ]
     },
-    "chromiumembeddedframework.runtime.win-arm64/112.2.7": {
-      "sha512": "47PzX5rwniuVDEHUvVDDB8L4nWCh95f6gr1fJvVQywsnZ5bGeObb3EyYqUSYs1yGcQ7mtpoDTI4qMSmAFzvyKg==",
+    "chromiumembeddedframework.runtime.win-arm64/112.3.0": {
+      "sha512": "H1KmGJFXD1sZo+tiU9U5Cr3eOPYt5l7yqKJmS8Rcc13lwtRYqa1b6a8q1HAnbmB5lc8YxNrEU4cIySgOrhUMsg==",
       "type": "package",
-      "path": "chromiumembeddedframework.runtime.win-arm64/112.2.7",
+      "path": "chromiumembeddedframework.runtime.win-arm64/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
         "README.txt",
-        "chromiumembeddedframework.runtime.win-arm64.112.2.7.nupkg.sha512",
+        "chromiumembeddedframework.runtime.win-arm64.112.3.0.nupkg.sha512",
         "chromiumembeddedframework.runtime.win-arm64.nuspec",
         "images/cef128x128.png",
         "runtimes/win-arm64/native/chrome_100_percent.pak",
@@ -2473,16 +2473,16 @@
         "runtimes/win-arm64/native/vulkan-1.dll"
       ]
     },
-    "chromiumembeddedframework.runtime.win-x64/112.2.7": {
-      "sha512": "o1G5B9y26h59rFC21zrlv/t4AubUf1EtCrMyqGOUnHqmRVVRKB9NUfiLCzIEAd/39EvY8UJAVaffDVQQZ8fq9Q==",
+    "chromiumembeddedframework.runtime.win-x64/112.3.0": {
+      "sha512": "Xi6gd6mj07L/WjuFxo0Fl8/NbfBHL9LcWFFT13n4uBKQXIMF5QwzV/Th9tJyRqEHEXz3a2B3+ZAoPdVyKyfz8w==",
       "type": "package",
-      "path": "chromiumembeddedframework.runtime.win-x64/112.2.7",
+      "path": "chromiumembeddedframework.runtime.win-x64/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
         "README.txt",
-        "chromiumembeddedframework.runtime.win-x64.112.2.7.nupkg.sha512",
+        "chromiumembeddedframework.runtime.win-x64.112.3.0.nupkg.sha512",
         "chromiumembeddedframework.runtime.win-x64.nuspec",
         "images/cef128x128.png",
         "runtimes/win-x64/native/chrome_100_percent.pak",
@@ -2501,16 +2501,16 @@
         "runtimes/win-x64/native/vulkan-1.dll"
       ]
     },
-    "chromiumembeddedframework.runtime.win-x86/112.2.7": {
-      "sha512": "MrB5vm4lmy6SfU6j4ho5iW6oHsh8Ntus3KSjSvIrunnvhJXDs0bJZpGK8TY9TnQ0LFA2cX/gbSQ8mav19FY2GQ==",
+    "chromiumembeddedframework.runtime.win-x86/112.3.0": {
+      "sha512": "EBAy7EdovKon42VQtjx2H9R+112Wkth3JZZvuC08NMqNkNn7VKrXbCgFgxKad8rdFKony3SMy2O9qD5cl+DPYA==",
       "type": "package",
-      "path": "chromiumembeddedframework.runtime.win-x86/112.2.7",
+      "path": "chromiumembeddedframework.runtime.win-x86/112.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
         "README.txt",
-        "chromiumembeddedframework.runtime.win-x86.112.2.7.nupkg.sha512",
+        "chromiumembeddedframework.runtime.win-x86.112.3.0.nupkg.sha512",
         "chromiumembeddedframework.runtime.win-x86.nuspec",
         "images/cef128x128.png",
         "runtimes/win-x86/native/chrome_100_percent.pak",
@@ -2529,23 +2529,25 @@
         "runtimes/win-x86/native/vulkan-1.dll"
       ]
     },
-    "CommunityToolkit.Mvvm/8.1.0": {
-      "sha512": "xxOt7lu9a5kB5Fs9RfcxzVlKnhuuPe+w7AXHtmCFtS3oldrsUhEMxHfNulluXSscUUoGxZ0jh55Om12ZP6abHA==",
+    "CommunityToolkit.Mvvm/8.2.0": {
+      "sha512": "F883u+B0AVUkRZS+VQBiZEJiqlGiiQhGA8Ejy1/Y8fl4ecBmSd+HYuDso0iiUhh+UxRDjp2aTQ7jGkuL2S4NrA==",
       "type": "package",
-      "path": "communitytoolkit.mvvm/8.1.0",
+      "path": "communitytoolkit.mvvm/8.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "License.md",
         "ThirdPartyNotices.txt",
+        "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
         "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
+        "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
         "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
         "build/netstandard2.0/CommunityToolkit.Mvvm.targets",
         "build/netstandard2.1/CommunityToolkit.Mvvm.targets",
         "buildTransitive/netstandard2.0/CommunityToolkit.Mvvm.targets",
         "buildTransitive/netstandard2.1/CommunityToolkit.Mvvm.targets",
-        "communitytoolkit.mvvm.8.1.0.nupkg.sha512",
+        "communitytoolkit.mvvm.8.2.0.nupkg.sha512",
         "communitytoolkit.mvvm.nuspec",
         "lib/net6.0/CommunityToolkit.Mvvm.dll",
         "lib/net6.0/CommunityToolkit.Mvvm.pdb",
@@ -4692,28 +4694,28 @@
       "CefSharp.Common >= 112.2.70",
       "CefSharp.WinForms.NETCore >= 112.2.70",
       "CefSharp.Wpf.NETCore >= 112.2.70",
-      "CommunityToolkit.Mvvm >= 8.1.0",
+      "CommunityToolkit.Mvvm >= 8.2.0",
       "Microsoft.EntityFrameworkCore >= 7.0.5",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.5",
-      "chromiumembeddedframework.runtime.win-arm64 >= 112.2.7",
-      "chromiumembeddedframework.runtime.win-x64 >= 112.2.7",
-      "chromiumembeddedframework.runtime.win-x86 >= 112.2.7"
+      "chromiumembeddedframework.runtime.win-arm64 >= 112.3.0",
+      "chromiumembeddedframework.runtime.win-x64 >= 112.3.0",
+      "chromiumembeddedframework.runtime.win-x86 >= 112.3.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Samvel\\.nuget\\packages\\": {}
+    "C:\\Users\\Gaetan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Samvel\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
+      "projectUniqueName": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
       "projectName": "ProjetDotNet",
-      "projectPath": "C:\\Users\\Samvel\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
-      "packagesPath": "C:\\Users\\Samvel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Samvel\\source\\repos\\ProjetDotNet\\obj\\",
+      "projectPath": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\ProjetDotNet.csproj",
+      "packagesPath": "C:\\Users\\Gaetan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gaetan\\source\\repos\\ProjetDotNet\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Samvel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gaetan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4753,7 +4755,7 @@
           },
           "CommunityToolkit.Mvvm": {
             "target": "Package",
-            "version": "[8.1.0, )"
+            "version": "[8.2.0, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -4765,15 +4767,15 @@
           },
           "chromiumembeddedframework.runtime.win-arm64": {
             "target": "Package",
-            "version": "[112.2.7, )"
+            "version": "[112.3.0, )"
           },
           "chromiumembeddedframework.runtime.win-x64": {
             "target": "Package",
-            "version": "[112.2.7, )"
+            "version": "[112.3.0, )"
           },
           "chromiumembeddedframework.runtime.win-x86": {
             "target": "Package",
-            "version": "[112.2.7, )"
+            "version": "[112.3.0, )"
           }
         },
         "imports": [
@@ -4795,7 +4797,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

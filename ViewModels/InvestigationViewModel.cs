@@ -259,11 +259,8 @@ namespace ProjetDotNet.ViewModels
                 {
 
                     NumberInvestigationInCharge = context.Investigations.Where(i =>i.Status == Status.En_cours && i.Investigator == SelectedInvestigator).Count();
-                    var tmp = context.Visits.Where(v => v.Investigators.Contains(SelectedInvestigator)).Count();
-                    if (tmp < 0)
-                        NumberInvestigationNotInCharge = 0;
-                    else
-                        NumberInvestigationNotInCharge = tmp;
+                    //var tmp = context.Visits.Where(v => v.Investigators.Contains(SelectedInvestigator)).Count();
+
 
                 }
 
