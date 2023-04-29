@@ -17,7 +17,7 @@ namespace ProjetDotNet.Models
         [Required]
         public bool DeliveryNotice { get; set; }
 
-        public byte[]? ProofPicture { get; set; }
+        public List<ProofPicture> ProofPictures { get; set; } = new List<ProofPicture>();
 
         [Required]
         public string Comments { get; set; }
@@ -31,5 +31,16 @@ namespace ProjetDotNet.Models
         public int? InvestigationId { get; set; }
         public Investigation Investigation { get; set; }
 
+    }
+
+    public class ProofPicture
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ProofPictureId { get; set; }
+
+        public byte[] Picture { get; set; }
+
+        public int VisitId { get; set; }
+        public Visit Visit { get; set; }
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,6 +75,41 @@ namespace ProjetDotNet.Views
                           "</Grid>";
 
             return grid;
+        }
+
+        private void AddImage(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Image Files(*.jpg;*.jpeg;*.bmp;*.png)|*.jpg;*.jpeg;.bmp;*.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    BitmapImage image = new BitmapImage(new Uri(filename));
+                    string base64String = ConvertImageToBase64(image);
+                    Console.WriteLine(base64String.ToString());
+                    Trace.WriteLine(base64String.ToString());
+                    Console.WriteLine("sdrgsrgrs");
+                    Image imageControl = new Image();
+                    imageControl.Width = 200;
+                    imageControl.Height = 200;
+                    imageControl.Margin = new Thickness(5);
+                    imageControl.Source = image;
+                    imageControl.Tag = base64String;
+                    imagePanel.Children.Add(imageControl);
+                }
+            }
+        }
+
+        private string ConvertImageToBase64(BitmapImage image)
+        {
+            MemoryStream ms = new MemoryStream();
+            PngBitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image));
+            encoder.Save(ms);
+            byte[] buffer = ms.ToArray();
+            return Convert.ToBase64String(buffer);
         }
     }
 }
