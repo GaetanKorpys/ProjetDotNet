@@ -184,7 +184,14 @@
 
                     <!-- Champs pour le numéro de téléphone -->
                     <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="Status de l'enquête :"/></TextBlock>
-                    <TextBlock Visibility="{Binding EnabledStatus}"  Grid.Column="1" Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top"><Run Text="{Binding Status}"/></TextBlock>
+                    <TextBlock Visibility="{Binding EnabledStatus}"  Grid.Column="1" Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Status"/>
+                                <Binding Path="InvestigationEndDate" Converter="{StaticResource DateConverter}"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </Grid>
             </StackPanel>
         </GroupBox>

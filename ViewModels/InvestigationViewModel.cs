@@ -552,6 +552,7 @@ namespace ProjetDotNet.ViewModels
                 if (investigationToFinish != null)
                 {
                     investigationToFinish.Status = Status.Classée;
+                    investigationToFinish.InvestigationEndDate = DateTime.Now.Date;
                     db.SaveChanges();
                 }
                 ClearInvestigationFields();
@@ -573,6 +574,7 @@ namespace ProjetDotNet.ViewModels
                 if (investigationToFinish != null)
                 {
                     investigationToFinish.Status = Status.Dépot_Plainte;
+                    investigationToFinish.InvestigationEndDate = DateTime.Now.Date;
                     db.SaveChanges();
                 }
                 ClearInvestigationFields();
