@@ -37,7 +37,7 @@
 
                 </Grid>
 
-                <Separator Margin="0,5,0,5"/>
+                <Separator Margin="0,15,0,5"/>
 
                 <Grid>
 
@@ -66,9 +66,38 @@
 
 
                 </Grid>
+                
+                <Separator Margin="0,15,0,5"/>
 
-                <Separator Margin="0,5,0,5"/>
+                <Grid>
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Sélectionnez une Visite :" HorizontalAlignment="Center" />
+
+                    <ComboBox x:Name="cmbVisits"                   
+                            SelectedItem="{Binding SelectedVisit}"
+                            ItemsSource="{Binding Visits}" Grid.Column="1">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="VisitDate" Converter="{StaticResource DateConverter}"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+
+                </Grid>
+
+                <Separator Margin="0,15,0,5"/>
+                
                 <Grid Grid.IsSharedSizeScope="True" Margin="5,5,5,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
