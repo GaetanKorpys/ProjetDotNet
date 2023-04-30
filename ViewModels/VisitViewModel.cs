@@ -133,7 +133,7 @@ namespace ProjetDotNet.ViewModels
             AddProofPictureCommand = new RelayCommand(AddProofPicture);
             AddVisitCommand = new RelayCommand(AddVisit);
             UpdateVisitCommand = new RelayCommand(UpdateVisit);
-            DeleteVisitCommand = new RelayCommand(DeleteVisit);
+            //DeleteVisitCommand = new RelayCommand(DeleteVisit);
             ClearFieldsCommand = new RelayCommand(ClearVisitFields);
 
             var settings = new CefSharp.WinForms.CefSettings();
@@ -249,6 +249,7 @@ namespace ProjetDotNet.ViewModels
                     Visits.Remove(SelectedVisit);
                 }
             }
+            ClearVisitFields();
         }
 
         private void UpdateVisit()
