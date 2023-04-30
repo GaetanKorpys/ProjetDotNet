@@ -25,8 +25,10 @@ namespace ProjetDotNet.Database
         public ApplicationContext()
         {
             _connectionString = Configuration.Configuration.connectionString;
-            Database.EnsureCreated();     
+            Database.EnsureCreated();
             //Database.EnsureDeleted();
+            this.Database.SetCommandTimeout(300); // Définir le délai d'attente à 300 secondes (5 minutes)
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -15,6 +15,8 @@ using Microsoft.Win32;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Microsoft.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace ProjetDotNet.ViewModels
 {
@@ -193,10 +195,9 @@ namespace ProjetDotNet.ViewModels
                             Picture = pictureBytes
                         };
 
-                        /*db.ProofPictures.Add(picture);
-                        db.SaveChanges();*/
+                        db.ProofPictures.Add(picture);
+                        await db.SaveChangesAsync().ConfigureAwait(false);
 
-                        // Add the new investigator to the list of investigators
                         _pictures.Add(picture);
 
                     }
@@ -309,21 +310,24 @@ namespace ProjetDotNet.ViewModels
 
                     foreach(ProofPicture p in _pictures)
                     {
-/*                        var picture = db.ProofPictures.Find(p.ProofPictureId);
-*/                        var newPicture = new ProofPicture()
+                        var picture = db.ProofPictures.Find(p.ProofPictureId);
+                        /*
+                        var newPicture = new ProofPicture()
                         {
                             Picture = p.Picture,
                         };
-                        visit.ProofPictures.Add(newPicture);
+                        */
+                        visit.ProofPictures.Add(picture);
                     }
-
-                    _pictures.Clear();
 
                     db.Visits.Add(visit);
                     db.SaveChanges();
 
                     investigation.Visits.Add(visit);
                 }
+
+                _pictures.Clear();
+                Images.Clear();
 
             }           
             ClearVisitFields();
@@ -362,11 +366,15 @@ namespace ProjetDotNet.ViewModels
 
         private void FillTextBox()
         {
+
+            Images.Clear();
+            _pictures.Clear();
+
             if (SelectedVisit != null)
             {
                 Comments = SelectedVisit.Comments;
                 DeliveryNotice = SelectedVisit.DeliveryNotice;
-                Images.Clear();
+                
                 
                 using (var db = new ApplicationContext())
                 {
@@ -381,6 +389,7 @@ namespace ProjetDotNet.ViewModels
                             Height = 100
                         };
                         Images.Add(image);
+                        _pictures.Add(p);
                     }
                 }
             }
