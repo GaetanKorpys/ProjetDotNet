@@ -292,6 +292,12 @@ namespace ProjetDotNet.ViewModels
                 return;
             }
 
+            if (SelectedInvestigation != null)
+            {
+                MessageBox.Show("Une visite est déjà séléctionnée.\n" +"Vous pouvez cependant la mettre à jour via le bouton Update.");
+                return;
+            }
+
             if (SelectedInvestigator != null && SelectedInvestigation != null)
             {
                 using (var db = new ApplicationContext())
@@ -375,8 +381,9 @@ namespace ProjetDotNet.ViewModels
             {
                 Comments = SelectedVisit.Comments;
                 DeliveryNotice = SelectedVisit.DeliveryNotice;
-                
-                
+
+
+
                 using (var db = new ApplicationContext())
                 {
                     var pictures = db.ProofPictures.Where(p => p.VisitId == SelectedVisit.VisitId).ToList();
