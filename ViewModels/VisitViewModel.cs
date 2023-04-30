@@ -14,6 +14,7 @@ using System.IO;
 using Microsoft.Win32;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ProjetDotNet.ViewModels
 {
@@ -198,13 +199,14 @@ namespace ProjetDotNet.ViewModels
 
                         // Add the new investigator to the list of investigators
                         _pictures.Add(picture);
-                        
+
                     }
                 }
-                
-                
+
+
             }
         }
+
 
         private void ClearVisitFields()
         {
@@ -302,8 +304,9 @@ namespace ProjetDotNet.ViewModels
 
                     foreach(ProofPicture p in _pictures)
                     {
-                        var picture = db.ProofPictures.Find(p);
+                        var picture = db.ProofPictures.Find(p.ProofPictureId);
                         visit.ProofPictures.Add(picture);
+
                     }
 
                     _pictures.Clear();
@@ -357,19 +360,46 @@ namespace ProjetDotNet.ViewModels
             {
                 Comments = SelectedVisit.Comments;
                 DeliveryNotice = SelectedVisit.DeliveryNotice;
-                foreach (ProofPicture p in SelectedVisit.ProofPictures)
+
+                using (var db = new ApplicationContext())
                 {
-                    Images.Add(ConvertArrayByteToImage(p.Picture));
+                    var pictures = db.ProofPictures.Where(p => p.VisitId == SelectedVisit.VisitId).ToList();
+                    foreach (var p in pictures)
+                    {
+                        var imageSource = ConvertArrayByteToImage(p.Picture);
+                        var image = new Image
+                        {
+                            Source = imageSource,
+                            Width = 100,
+                            Height = 100
+                        };
+                        Images.Add(image);
+                    }
                 }
             }
         }
 
-        private Image ConvertArrayByteToImage(byte[] picture)
-        {
 
-            //Entrée = Tableau de Byte
-            //Sortie = new Image
-            throw new NotImplementedException();
+
+        private ImageSource ConvertArrayByteToImage(byte[] picture)
+        {
+            if (picture == null || picture.Length == 0)
+            {
+                return null;
+            }
+
+            BitmapImage bitmapImage = new BitmapImage();
+            using (MemoryStream stream = new MemoryStream(picture))
+            {
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = stream;
+                bitmapImage.EndInit();
+            }
+
+            return bitmapImage;
         }
+
+
     }
 }
