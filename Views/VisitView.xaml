@@ -138,7 +138,7 @@
         </GroupBox>
         <StackPanel DockPanel.Dock="Bottom">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource BoutonTheme}" IsEnabled="{Binding EnabledAddButton}" Command="{Binding AddVisitCommand}" Content="Ajouter" Height="50" Width="150" Margin="5,5,5,5"/>
+                <Button Style="{StaticResource BoutonTheme}" Command="{Binding AddVisitCommand}" Content="Ajouter" Height="50" Width="150" Margin="5,5,5,5"/>
                 <Button Style="{StaticResource BoutonTheme}" Command="{Binding UpdateVisitCommand}" Content="Mettre à jour" Height="50" Width="150" Margin="5,5,5,5" Background="#FFB56A3F"/>
                 <Button Style="{StaticResource BoutonTheme}" Command="{Binding DeleteVisitCommand}" Content="Supprimer" Height="50" Width="150" Margin="5,5,5,5" Background="#FFB53F3F"/>
             </StackPanel>
