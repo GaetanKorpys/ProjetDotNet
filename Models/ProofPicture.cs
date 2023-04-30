@@ -16,5 +16,6 @@ namespace ProjetDotNet.Models
 
         public int? VisitId { get; set; }
         public Visit Visit { get; set; }
+
     }
 }

@@ -79,6 +79,7 @@ namespace ProjetDotNet.ViewModels
                 using (var context = new ApplicationContext())
                 {
                     Visits.Clear();
+                    
                     var visits = context.Visits.Where(v => v.Investigation == _selectedInvestigation).ToList();
                     foreach (Visit v in visits)
                     {
@@ -156,6 +157,7 @@ namespace ProjetDotNet.ViewModels
 
         private async void AddProofPicture()
         {
+            Console.WriteLine("HELOO");
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             openFileDialog.Filter = "Image Files(*.jpg;*.jpeg;*.bmp;*.png)|*.jpg;*.jpeg;.bmp;*.png";
@@ -184,26 +186,21 @@ namespace ProjetDotNet.ViewModels
 
                     Images.Add(imageControl);
 
-
                     using (var db = new ApplicationContext())
                     {
-
-
                         var picture = new ProofPicture()
                         {
                             Picture = pictureBytes
                         };
 
-                        db.ProofPictures.Add(picture);
-                        db.SaveChanges();
+                        /*db.ProofPictures.Add(picture);
+                        db.SaveChanges();*/
 
                         // Add the new investigator to the list of investigators
                         _pictures.Add(picture);
 
                     }
                 }
-
-
             }
         }
 
@@ -239,6 +236,13 @@ namespace ProjetDotNet.ViewModels
 
                 if (visitToDelete != null)
                 {
+                    
+                    var proofPictures = db.ProofPictures.Where(c => c.Visit == visitToDelete).ToList();
+                    foreach (var p in proofPictures)
+                    {
+                        db.ProofPictures.Remove(p);
+                    }
+
                     db.Visits.Remove(visitToDelete);
                     db.SaveChanges();
                     Visits.Remove(SelectedVisit);
@@ -269,6 +273,7 @@ namespace ProjetDotNet.ViewModels
                 {
                     visitToUpdate.Comments = Comments;
                     visitToUpdate.DeliveryNotice = DeliveryNotice;
+                    visitToUpdate.ProofPictures = _pictures;
                     db.SaveChanges();
                 }
                 ClearVisitFields();
@@ -304,14 +309,15 @@ namespace ProjetDotNet.ViewModels
 
                     foreach(ProofPicture p in _pictures)
                     {
-                        var picture = db.ProofPictures.Find(p.ProofPictureId);
-                        visit.ProofPictures.Add(picture);
-
+/*                        var picture = db.ProofPictures.Find(p.ProofPictureId);
+*/                        var newPicture = new ProofPicture()
+                        {
+                            Picture = p.Picture,
+                        };
+                        visit.ProofPictures.Add(newPicture);
                     }
 
                     _pictures.Clear();
-
-
 
                     db.Visits.Add(visit);
                     db.SaveChanges();
@@ -360,7 +366,8 @@ namespace ProjetDotNet.ViewModels
             {
                 Comments = SelectedVisit.Comments;
                 DeliveryNotice = SelectedVisit.DeliveryNotice;
-
+                Images.Clear();
+                
                 using (var db = new ApplicationContext())
                 {
                     var pictures = db.ProofPictures.Where(p => p.VisitId == SelectedVisit.VisitId).ToList();

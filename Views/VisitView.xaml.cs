@@ -26,6 +26,7 @@ namespace ProjetDotNet.Views
     {
         public VisitView()
         {
+            Console.WriteLine("HELOO");
             InitializeComponent();
         }
 

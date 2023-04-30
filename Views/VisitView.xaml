@@ -125,19 +125,14 @@
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Choisir une image" Command="{Binding AddProofPictureCommand}" Height="25"/>
-                    <ItemsControl ItemsSource="{Binding Pictures}" Grid.Column="0">
-                        <ItemsControl.ItemsPanel>
+                    <Button Content="Choisir une image" Command="{Binding AddProofPictureCommand}" Height="25" VerticalAlignment="Top"/>
+                    <ListView ItemsSource="{Binding Images}" Grid.Column="1">
+                        <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel/>
+                                <WrapPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding ProofPicture}"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                        </ListView.ItemsPanel>
+                    </ListView>
                 </Grid>
             </StackPanel>
         </GroupBox>
@@ -149,15 +144,6 @@
             </StackPanel>
             <Button Style="{StaticResource BoutonTheme}" Command="{Binding ClearFieldsCommand}" Content="Nettoyer" Height="50" Width="150" Margin="5,5,5,5"/>
         </StackPanel>
-        <ListView Width="286" ItemsSource="{Binding Images}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-
-        </ListView>
-
 
     </DockPanel>
 </UserControl>
