@@ -292,7 +292,7 @@ namespace ProjetDotNet.ViewModels
                 return;
             }
 
-            if (SelectedInvestigation != null)
+            if (SelectedVisit != null)
             {
                 MessageBox.Show("Une visite est déjà séléctionnée.\n" +"Vous pouvez cependant la mettre à jour via le bouton Update.");
                 return;

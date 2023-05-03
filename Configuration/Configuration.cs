@@ -10,7 +10,5 @@ namespace ProjetDotNet.Configuration
     {
 
         public static string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=PoleInvestigation;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-
-        public static int numInvestigation = 1;
     }
 }
