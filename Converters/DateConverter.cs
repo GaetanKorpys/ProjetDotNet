@@ -10,7 +10,7 @@ namespace ProjetDotNet.Converters
         {
             if (value is DateTime date)
             {
-                return date.ToString("dd/MM/yyyy");
+                return date.ToString("yyyy/MM");
             }
 
             return value;

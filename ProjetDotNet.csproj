@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>logoProjet.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="logoProjet.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CefSharp.Common" Version="112.3.0" />

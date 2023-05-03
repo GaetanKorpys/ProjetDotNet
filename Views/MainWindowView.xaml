@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetDotNet.Views"
         mc:Ignorable="d"
-        Title="Pôle Investigation" Height="700" Width="1600"
+        Title="Pôle Investigation" Height="700" Width="1250"
         MinHeight="700"
-        MinWidth="1600">
+        MinWidth="1250">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="12*"/>
-            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="558*"/>
         </Grid.ColumnDefinitions>
 
 
-        <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
+        <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0">
             <StackPanel>
                 <Button Content="Enquete" Command="{Binding UpdateViewCommand}" CommandParameter="Investigation"/>
                 <Button Content="Enqueteur" Command="{Binding UpdateViewCommand}" CommandParameter="Investigator"/>
@@ -26,6 +26,6 @@
         </DockPanel>
 
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding SelectedViewModel}"/>
+        <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>

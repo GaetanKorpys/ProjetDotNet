@@ -10,14 +10,14 @@
 
     <Grid Background="#FF3F7092">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="81*"/>
-            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="417*"/>
+            <ColumnDefinition Width="383*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
             <RowDefinition Height="35*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header=" Information Enquête " FontSize="16" Margin="20,21,15,5">
+        <GroupBox Header=" Information Enquête " FontSize="16" Margin="15,21,0,5">
             <StackPanel Margin="5,15,5,5">
                 <Grid Grid.IsSharedSizeScope="True">
                     <Grid.ColumnDefinitions>
@@ -212,10 +212,10 @@
                         <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text="{Binding NumberInvestigationInCharge}"/></TextBlock>
                         <TextBlock Style="{StaticResource TextBlockTheme}" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"><Run Text=" enquête(s)."/></TextBlock>
                     </StackPanel>
-                    
+
                 </StackPanel>
             </GroupBox>
-            <GroupBox Grid.Row="1" Header=" Information Géographique" FontSize="16" Margin="30,50,30,50">
+            <GroupBox Grid.Row="1" Header=" Information Géographique" FontSize="16" Margin="15,50,20,50">
                 <cefSharp:ChromiumWebBrowser x:Name ="chromWebBrowser"
                     WebBrowser ="{Binding WebBrowser}" 
                     Address="{Binding WebBrowserAddress}"                                        
